@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\..\\..\\Downloads\\project_mDB\\project"
+		},
+		{
+			"path": "..\\..\\..\\Downloads\\01 Проект №1. Классический стиль\\002 Source\\Source"
+		}
+	],
+	"settings": {
+		"compile-hero.disable-compile-files-on-did-save-code": true,
+		"liveServer.settings.multiRootWorkspaceName": "Learning JS 6 hourse"
+	}
+}

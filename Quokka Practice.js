@@ -1,35 +1,24 @@
-// const upStr = 'КаЖдЫй ОхОтНиК'
+window.addEventListener('DOMContentLoaded', () => {
 
-// const changeRegister = (str) => {
-//    const newArr = []
-//    const convertToArray = str.split('') 
+    const tabs = document.querySelectorAll('.tabheader__item'),
+          tabsContent = document.querySelectorAll('.tabcontent'),
+          tabsParent = document.querySelector('.tabheader__items')
 
-//    for (const i of convertToArray) {
-//        if (convertToArray[i] === convertToArray[i].toUpperCase()) {
-//             convertToArray[i].push(newArr.toLowerCase())
-//        } else {
-//             convertToArray[i]
-//        }
-//    }
-//    return newArr
-// }
-// changeRegister(upStr)
-
-// 1. Замена каждого символа на противоположный
-// 2. Найти каждую букву
-
-const upStr = 'КаЖдЫй ОхОтНиК'
-
-const changeRegister = (str) => {
-    return str
-        .split('')
-        .map((item) => {
-            if (item === item.toUpperCase()) {
-                item.toLowerCase()
-            } else {
-                item.toUpperCase()
-            }
+    const hideTabContent = () => {
+        tabsContent.forEach(item => {
+            item.style.display = 'none'
         })
-        .join()
-}
-changeRegister(upStr)
+
+        tabs.forEach(item => {
+            item.classList.remove('tabheader__item_active')
+        })
+    }
+
+    const showTabContent = (i) => {
+        tabsContent[i].style.display = 'block'
+        tabs[i].classList.add('tabheader__item_active')
+    }
+
+    hideTabContent()
+    showTabContent(0)
+})
