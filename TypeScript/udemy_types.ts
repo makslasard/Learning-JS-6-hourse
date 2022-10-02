@@ -465,7 +465,7 @@ class Car extends Vehicle {
 Чтобы не давать им возможность вызывать этот метод
 
 Модификатор protected (защищенный) - в нем все те же самые свойства как у private, только еще добавляется доступ изнутри класса наследника
-Не только внутри самого класса, но и внутир класса наследника 
+Не только внутри самого класса, но и внутри класса наследника 
 
 Модификаторы позволяют типизировать работу с свойствами и методами класса/объекта добавляя тип доступа 
 
@@ -489,13 +489,34 @@ const vehicle = new Vehicle('black')
     Interface + Class - повторное использование кода в TypeScript
 
 
+Generic types
+    - по соглащению generic обозначают одной заглавной буквой <T>
 
+class ArrayOfNumbers {
+    constructor(public collection: number[]) {}
 
+    get(index: number): number {
+        return this.collection[index]
+    }
+}
 
+class ArrayOfString {
+    constructor(public collection: string[]) {}
 
+    get(index: number): string {
+        return this.collection[index]
+    }
+}
 
+class ArrayOfAnithing<T> {
+    constructor(public collection: T[]) {}
 
+    get(index: number): T {
+        return this.collection[index]
+    }
+}
 
+<T> - это как параметр и каждый раз при создании объектов класса
 
 
 

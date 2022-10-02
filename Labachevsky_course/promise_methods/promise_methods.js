@@ -46,3 +46,4 @@ async function getComments() {
 Promise.all([getPosts(), getUsers(), getComments()]).then(console.log)
 Promise.allSettled([getPosts(), getUsers(), getComments()]).then(console.log)
 Promise.race([getPosts(), getUsers(), getComments()]).then(console.log)
+
