@@ -56,3 +56,14 @@ const personTwo = {
 }
 const objOne = personOne.sayHey.bind(personTwo, 25, 'DevOps')
 console.log(personTwo.sayHello())
+
+const promise = new Promise((resolve, reject) => {
+    const response = fetch('yandex.ru')
+
+    response.then(
+
+    ).then(
+
+    )
+})
+

@@ -40,7 +40,7 @@
 Если не найден мы вернем - 1
 
 */
-const array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+const arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 let count = 0
 
 function binarySearch(array, item) {
@@ -66,5 +66,5 @@ function binarySearch(array, item) {
     return position;
 }
 
-console.log(binarySearch(array, 8))
+console.log(binarySearch(arr, 8))
 console.log(count)

@@ -1,0 +1,1 @@
+export const filterSelectore = (state) => state.todos.filter(todo => todo.id === action.id)
