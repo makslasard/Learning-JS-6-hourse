@@ -25,5 +25,47 @@ Interface который описывает различные свойства 
 
 Часто в React мы можем иметь свойства которые опциональные 
 
+interface AppProps {
+    color: string
+}
+type Propa {
+    title: string,
+    description: string
+}
+
+class App extends React.Component<AppProps> {}
+
+Наследование типизации от interface
+
+
+Обработка Component state
+
+onIncrement = (): void => {}
+
+const createTask: React.FC<AppProps> = ({title}: Props) => {}
+
+
+const [title, setTitle] = useState<null | sting>(null)
+
+interface Member {
+    username: number,
+    age?: number
+}
+
+const [title, setTitle] = useState<Member | sting>(null)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 */

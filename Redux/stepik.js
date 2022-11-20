@@ -329,8 +329,283 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 Т.к должен быть один источник истинны. В данном случае им являеться роутинг
 Т.к от туда мы берем необходимые значения из параметров
 
+В файле с selector в каждый отдельный селектор мы прописываем какие данные с помощью этого селектора 
+    мы хотим получить из store
+
+Redux легаси:
+    - С redux есть возможность работать как с функциями так и с классами
+    Функции современный стандарт, классы - легаси (старый код)
+
+    Функции в Redux:
+        - Используют хук useSelector для получения выборки данных
+        - Используют хук useDispatch для получения функции "диспетчер событий"
+        - Не нуждаеться в дополнительных обертках 
+
+    Классы в Redux:
+        - Не могут использовать хуки
+        - Используют обертку connect для добавления данных и диспетчера в props
+        - Connect принимает 2 опциональных параметра
+            1. Для добавления данных в props
+            2. Для добавления методов в props
+
+Redux Middleware:
+    - Это нечто что вступает в дело между action и reducer.
+        Позволяет выполнять определенные операции на этом промежутке
+
+Middleware может быть не один. Цепочка Middleware при каждом action может быть любая 
+По факту это какие-то функции с определенным функционалом который позволяем нам делать определенные вещи
+
+Пример:
+    - Логирование
+    - Отчеты об ошибках
+    - Ассинхронная логика
+    - Модификации action (или их отмена)
+    - и т.д
+
+Самостоятельно писать Middleware приходиться крайне редко. Как правило используются готовые библиотеки   
+
+    - Подключение Middleware происходит в момент создания store
+
+Пример: Логирование
+
+Это некоторая цепочка вызова функций где у нас есть store, next, action
+
+const myLogger = (store) => (next) => (action) => {}
+    - Это сигнатура, которую ожидает от нас Redux чтобы наши Middleware выглядели именно таким образом
+
+    store - это конкретный объект store который мы создаем с помощь createStore. Причем со всеми
+        доступными ему методами. 
+    
+    next - обязательно должен быть вызван внутири нашего Middleware c передачей в него action
+    
+    action - это текущее событие которые как раз и вызвало что наш Logger вообще отработал
+
+const myLogger = (store) => (next) => (action) => {
+  console.log('dispatched an action', action.type)
+  next(action)
+}
+Вызов первой функции возвращает нам слудующую функцию которая возвращает слудующую функцию которая выполняет логику
+Все эти вызовы происходят внутри redux нам не нужно об этом беспокоиться 
+
+Чтобы подключить Middleware к нашему store нужно подлючить из нашего 'redux' helper который 
+    называеться applyMiddleware
+
+applyMiddleware - helper нужен чтобы подключать наши Middleware к приложению
+
+Функция createStore - может принимать до 3 параметров. 2 и 3 параметры опцианальны
+
+Делаеться это следующим образом:
+    - Мы передаем в функцию создания store 2 или 3 параметром enhencer(усилитель)
+    - Качестве аргументов applyMiddleware() мы перечисляем наши функции просто по ссылки не вызывая их
+    - Далее Redux по своей логике учитывает это встраивает наши Middleware в общую цепочку
+        между action и reducer
+
+export const store = createStore(counter, applyMiddleware(myLogger))
+
+Особенность данного подхода является то что на next не обязательно все заканчиваеться
+Если мы после нашего next напишем что либо еще, то при таком подходе у нас будет выводиться сразу 2 значения
+
+const myLogger = (store) => (next) => (action) => {
+  console.log('dispatched an action', action.type)
+  next(action)
+  console.log('Updated state is', store.getState())
+}
+
+next(action) - гарантирует нам что после 21 строчки у нас отработает reducer. Измениться состояние
+    Случиться это синхронно. И только после того как у нас reducer отработает мы попатем на строчку 23
+    и выполним слудующую строчку кода с новым обновленным store
+
+reducer -ы всегда должны быть чистыми и никаких случайных значений там быть не должно
+
+
+Чаще всего Middleware выглядит следующим образом:
+
+const middleware = []
+
+if(process.env.NODE_ENV === 'development') { - добавь logger в список только если мы в режиме разработки
+    middleware.push(logger)
+}
+
+export const store = createStore(counter, applyMiddleware(...middleware))
+...middleware - делаться для того что должны быть функции, а не массив. Поэтому используем spread оператор
+
+Все необходимы middleware собираються в массив middleware который передаем в applyMiddleware
+    которая может принять любое кол-во middleware. Дальше разворачиваем 
+
+compose - это возможность последовательно вызывать функции
+Мы можем передать в саму функцию compose как аргументы любое колличество функций, они по очереди будут вызваны 
+    с переданным аргументом который будет подан на вход. В нашем случае это будет store
+
+export const store = createStore(
+  counter,
+  composeEnhancers(applyMiddleware(logger))
+);
+
+Возможность объеденить middleware и devTools
+
+
+Библиотека Redux Persist
+    - Не работает с middleware
+
+Чтобы начать работу с библиотекой ее нужно установить в зависимости npm i redux-persist
+
+После установки нужно сделать 2 вещи:
+    - Добавить 2 дополнительных import. Один из корня библиотеки, второй из доп пути storage
+
+import { persistStore, persistReducer } from 'redux-persist' - hepler
+import storage from 'redux-persist/lib/storage' - работает с разныит видами storage
+    По умолчанию мы используем браузерный localStorage
+
+Для работы предлогаеться создать некоторый config
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  // whitelist: [],
+  // blacklist: [],
+}
+
+Этот config может содержать больше ключей, чем есть по умолчанию
+Мы добавим whitelist: [], blacklist: []
+
+Далее нам предлогаеться создать persistedReducer
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+Если мы используем библиотеку как внешний инструмент мы должны использовать hepler persistedReducer
+    передать туда настройи нашего persist и передать туда наш reducer (rootReducer)
+
+persistedReducer - это будет некоторая обертка над нашим reducer нужная для логики работы 
+    данной библиотеки
+
+И теперь мы меняем функцию создания store
+export const store = createStore({
+    persistedReducer,
+    devTools,
+})
+
+Так же во вне нам нужно export const persister = persistStore(store)
+
+Чтобы ее создать нужен 2 helper - persistStore(). Который принимает наш store
+Это нужно чтобы наше приложение в точке входа в приложении смогло потреблять данные в рамках React
+
+Для этого по инструкции мы должны воспользоваться еще одним import
+import { PersistGate } from 'redux-persist/integration/react'
+
+Уже на уровне всего приложения
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RootComponent />
+      </PersistGate>
+    </Provider>
+  );
+};
+
+
+<PersistGate loading={null} persistor={persistor}>
+    PersistGate - требует несколько ключей.
+
+    loading - это мог бы быть какой-то компонент где бы мы отображали например preloader
+        что сейчас у нас синхронизируются данные
+
+    persistor - это что мы создавали на уровне store
+        export const persister = persistStore(store)
+
+Это нужно чтобы при перезагрузке браузера наши данные оставались неизменными
+
+whitelist: [filters, positions] - у нас в store может быть много ключей. Для хранения определенного набора ключей чтобы 
+    их сохранять. Например filters, positions. Все храниться в localStorage
+
+blacklist: [] - указываем какие ключи мы не хотим хранить. Все что не попало в blacklist
+    будет сохранено в localStorage
+
+Так же можно реализовать собственный persister в зависимости от нужд проекта
+
+
+Redux async middleware:
+    - Если есть какие-либо ассинхронные операции работы с данными, то на этапе middleware мы можем
+        реализовать какие-либо запросы ассинхронные
+
+Например:
+    - Есть какой-либо API с которым мы хотим общаться. Для общения нам нужно отправить запрос,
+        получить ответ и после это инициировать какую-то логику. При этом не тормазив работу всего 
+        приложения. 
+    
+Есть специальный подход который позволяет все это реализовать. Подход подразумевает что на этопе
+    middleware мы отправляем запрос ассинхронно. После этого выполняеться любая логика reducer, а
+    сам reducer ассинхронно по ответу от сервера вызывает еще какой-то action дополнительный 
+    когда уже пришел ответ.
+
+При этом в рамках middleware может случиться не один action 
+
+    - Может быть статус: Загрузка...
+        Мы вызвали action. Action на этапе middleware вызвал другой action. Сейчас пошла загрузка
+
+    - Полученные данные
+        Когда получил данные инициировал второй action что данные получены
+
+    - Ошибка
+        Если данные не получены случилась ошибка. Мы должны вызвать следующий action
+        Чтобы у нас на уровне приложения была информация об ошибках и могули пользователю отрисовать ошибку
+
+    Action Creator
+        - Функция которая возвращает объект события. С полем type и вспомогательной информацией
+        - Не вызывает другие события
+        - Не имеет доступа к внешним redux методам
+        - Только синхронная работа
+
+        const actionExample = (data) => ({
+            type: "SOME_TYPE_STRING", 
+            payload: data,
+        })
+
+    Thunk Action
+        - Отличаються по логике от action creator. Использовать thunk action можно только благодаря 
+            специальному middleware без них такой возможности не будет.
+
+        - Функция НЕ возвращает объект события. В этом нет необходимости т.к задачая иная  
+        - Вызывает внутри себя другие события. В любом колличестве    
+        - Имеет доступ к dispatch() и getState()
+        - Предназначены для ассинхронной логики: запросы на сервер и т.д
+
+        const thunkExample = (data) => (dispatch, getState) => {
+            dispatch(someAction())
+
+            fetch(url) {
+                .then(res => res.json())
+                .then(loaded => {
+                    dispatch(someOtherAction(loaded))
+                })
+            }
+        }
+
+        Функция возвращает функцию. И на базе того что функция возвращает функцию redux понимает что
+            речь идет о не обычном action, а о thunkAction. Ему нужо предоставить 2 метода
+            dispatch и getState которые в теле мы можем использвать
+
+export const store = createStore(rootReducer, composeDevTools(applyMiddleware(thunk)))
+composeDevTools - функция объединения devTools и Middleware. Т.к функция createStore может принять 3 параметра
+
+
+Чтобы начать работу c Redux-thunk:
+     - Установить библиотеку redux-thunk
+
+import composeDevTools from '@redux-devtools/extension'
+import thunk from 'redux-thunk' - наличие этого middleware дает нам возможность использовать
+        thunk action
+
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+
+
+Подготовка клиентского API:
+        - Папка api в которой будет обработывать запросы. Обстракция
+
 
 */
+
 import { createStore } from 'redux'
 
 let nextTodoId = 0
@@ -396,7 +671,7 @@ export const configureStore = () => { // При создании store мы по
 
     store.subscribe(throttle(() => { // Выполняется каждый раз когда произходит изменение state
         saveState({ // Мы можем точечно определить что именно должно храниться в state
-            todos: store.getState().todos 
+            todos: store.getState().todos
         })
     }, 1000)) // Временное ограничение на перезапись в localStorage
     // НЕ используем на уровне React приложения. Только на уровне store
@@ -433,16 +708,16 @@ export const saveState = (state) => {
 }
 //Роутинг 
 
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 const filter = () => {
-    const {filter: activeFilter = 'all'} = useParams()
+    const { filter: activeFilter = 'all' } = useParams()
 
     return (
         <div>
-            <Link to="/all" style={{color: activeFilter === 'all' ? 'red' : 'black'}}>all</Link>
-            <Link to="/active" style={{color: activeFilter === 'active' ? 'red' : 'black'}}>all</Link>
-            <Link to="/complited" style={{color: activeFilter === 'complited' ? 'red' : 'black'}}>all</Link>
+            <Link to="/all" style={{ color: activeFilter === 'all' ? 'red' : 'black' }}>all</Link>
+            <Link to="/active" style={{ color: activeFilter === 'active' ? 'red' : 'black' }}>all</Link>
+            <Link to="/complited" style={{ color: activeFilter === 'complited' ? 'red' : 'black' }}>all</Link>
         </div>
     )
 }

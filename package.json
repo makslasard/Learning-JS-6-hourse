@@ -3,7 +3,8 @@
     "lodash": "^4.17.21",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2"
   },
   "devDependencies": {
     "@types/jest": "^29.2.0",

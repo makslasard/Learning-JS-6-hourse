@@ -51,7 +51,7 @@ function binarySearch(array, item) {
     let position = -1
     while (found === false && start <= end) {
         count += 1
-        middle = Math.floor((start - end) / 2)
+        middle = Math.floor((start - end) / 2) // Поиск центрального элемента
         if (array[middle] === item) {
             found = true
             position = middle
@@ -65,6 +65,23 @@ function binarySearch(array, item) {
     }
     return position;
 }
+
+// Реализация бинарного поиска с помощью рекурсии
+
+function recursiveBinarySearch(array, item, start, end) {
+    let middle = Math.floor((start - end) / 2)
+
+    if(item === array[middle]) { // Если искомый элемент равен элементу который лежит в массиве по центральному индексу
+        return middle // Возвращаем позицию центрального элемента
+    }
+    if(item < array[middle]) {
+        return recursiveBinarySearch(array, item, start, middle - 1)
+    } else {
+        return recursiveBinarySearch(array, item, start, middle + 1)
+    }
+}
+
+
 
 console.log(binarySearch(arr, 8))
 console.log(count)
