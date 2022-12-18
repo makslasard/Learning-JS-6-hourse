@@ -19,7 +19,7 @@ tsconfig.json - основной файл для конфигурации про
     Если возврать ничего не будет, то будет ошибка
 
 В использовании React.FC есть 2 ньанса:
-    1. Из отличие от нормальных функций в точ что они обеспечивают проверку типов и автозаполнение для
+    1. Из отличие от нормальных функций в том что они обеспечивают проверку типов и автозаполнение для
         статических свойств таких как: displayName, propTypes и defaultProps
     Но есть проблема использования defaultProps и React.FC
 
@@ -317,7 +317,7 @@ interface WithLoadingProps {
     loading: boolean
 }
 
-const withLoading = <P extends object>(Component: Reaact.ComponentType<P>) => {
+const withLoading = <P extends object>(Component: React.ComponentType<P>) => {
     class WithLoading extends React.Component<P & WithLoadingProps> {
         render() {
             const { loading, ...props } = this.props

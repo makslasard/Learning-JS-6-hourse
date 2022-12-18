@@ -1,3 +1,5 @@
+import {client} from '../api/index'
+
 export const ADD_TODO = 'ADD_TODO'
 
 const addTodosAction = (todos) => ({
@@ -6,9 +8,8 @@ const addTodosAction = (todos) => ({
 })
 
 export const loadTodo = () => (dispatch) => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-        .then(res => res.json())
+    client.get('https://jsonplaceholder.typicode.com/todos', {})
         .then(data => dispatch(addTodosAction(data)))
-
+        .catch(err => console.error(err))
 }
 

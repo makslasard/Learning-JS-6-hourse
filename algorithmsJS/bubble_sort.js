@@ -52,3 +52,4 @@ function bubbleSort(array) {
 console.log('count ', count)
 console.log('length ', arr.length) // O(n*n) - алгоритм менее эффективный
 console.log(bubbleSort(arr))
+

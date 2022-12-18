@@ -2,17 +2,17 @@
 React Router 6 - базовый роутинг React-приложения
 
 1. Нужно установить в зависимости react-router-dom
-2. Импортировать из react: impoer { BrowserRouter } from 'react-router-dom'
+2. Импортировать из react: import { BrowserRouter } from 'react-router-dom'
 
 Он должен быть родительским компонентом относительно всего нашего приложения
 Это позволяет сделать роутинг внутри нашего приложения
 
-Роутинг предпологает SPA который позволяет не перезагружать страницу, а подгружать нужнные данные 
+Роутинг предполагает SPA который позволяет не перезагружать страницу, а подгружать нужнные данные 
 
 Чтобы начать работать нам нужно импортировать в компонент <App /> дополнительные вещи
 import { Routes, Route, Link } from 'react-router-dom'
 
-Также нужно подготовить страницы ипортированные в <App /> как компоненты 
+Также нужно подготовить страницы импортированные в <App /> как компоненты 
 import { Homepage } from './pages/Homepage'
 
 Для роутинга у нас будет базовый компонент <Routes />
@@ -46,9 +46,9 @@ import { Homepage } from './pages/Homepage'
 </header>
 
 <header> - с роутингом. Страница при переходе не будет перезагружаться 
-    <Lin to='/'>Home</Lin>
-    <Link to='/posts'>Blog</Link>
-    <Link to='/about'>About</Link>
+    <Lin to='/'>{<Home />}</Lin>
+    <Link to='/posts'>{<Blog />}</Link>
+    <Link to='/about'>{<About />}</Link>
 </header>
 
 Пример:

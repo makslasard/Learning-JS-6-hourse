@@ -34,7 +34,7 @@ const Greeting = ({ name = '', position = '' }) => {
 }
 
 4. Использование REST оператора
-    - такая фишка ES6 позволяет пробросить в компонент дополнительные props без необходимости из полного перечисления
+    - такая фишка ES6 позволяет пробросить в компонент дополнительные props без необходимости их полного перечисления
 
 <Greeting 
     name="Jack"
@@ -43,6 +43,27 @@ const Greeting = ({ name = '', position = '' }) => {
     onClick={showFunction}
     id="person-position"    
 />
+
+const CardProduct = (...props) => {
+    return (
+    <>
+        <div className={style.cardProduct}>
+            <h1 className={style.cardProduct__title}>{props.title}<h1/>
+            <p className={style.cardProduct__discription}>{props.discription}</p>
+            <svg />
+            <button>{props.button}<button/>
+        <div/>
+    </>
+)
+}
+
+{data.map(({id, ...props}) => {
+    return <CardProduct key={id} {...props} />
+})}
+
+
+<Greeting key={id} {...props} />
+
 
 const Greeting = ({ name, position, ...restProps }) => {
     <div>
