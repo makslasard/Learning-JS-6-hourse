@@ -146,7 +146,9 @@ Redux Tolkit (RTK): Современная работа с Redux
             name: '@@todos', - некоторое доменное имя
             initialState: [],
             reducers: {
-                addTodo: (state, action) => {},
+                addTodo: (state, action) => {
+
+                },
                 removeTodo: (state, action) => {},
                 toggleTodo: (state, action) => {}
             },
@@ -180,7 +182,7 @@ Redux Tolkit (RTK): Современная работа с Redux
         const todoSlice = createSlice({
             name: '@@todos', - некоторое доменное имя
             initialState: [],
-            reducer: {
+            reducers: {
                 addTodo: {
                     reducer: (state, action) => {
                         state.push(action.payload)
@@ -274,45 +276,99 @@ Redux Tolkit (RTK): Современная работа с Redux
 
         const todosSlice = createSlice({
             name: root/reset-app,
-            initialState: [],
-            reducers:
+            initialState: 'all',
+            reducers: {
+
+            },
+            extraReducer: (builder) => {
+                builder.addCase(resetDefault, (state, action) => {})
+            }
         })
 
+        Чем-то напоминает createReducer
+        Тоже принимает builder. И возвращать историю что этот builder что-то создает
+
+    Зачем это нужно?
+        - У нас когда мы говорим про какой-то конкретный slice, это история которая может работать
+            относительно конкретной ветки
+
+        export const store = configureStore({
+            reducer: {
+                todos: todoSlice.reducer,
+                filter: filterSlice.reducer
+            },
+            devTools: true
+        })
+        
 
 
+        reducer - выступает как дерево
+        Все reducers которые внутри как уровни
+
+        И когда мы работаем на уровки todosSlice мы работаем только на уровне todos
+            мы ничего не знаем про фильтры
+
+        Также когда работаем с filterSlice мы ничего не знаем про todos
+        Дерево от уровня 
+
+        export const {setFilter} = filterSlice.actions
+
+        actions автоматически создаются в slice
+
+        initialState: 'all' - значение по умолчанию
+        При работе в JSX через dispatch мы передаем action, а не slice
+            Т.к actions создаются автоматически
+
+        const todoSlice = createSlice({
+            name: '@@todos', - некоторое доменное имя
+            initialState: [],
+            reducers: {
+                addTodo: (state, action) => {
+
+                },
+                removeTodo: (state, action) => {},
+                toggleTodo: (state, action) => {}
+            },
+            extraReducers: (builder) => {
+                builder
+                    .addCase(resetToDefault, () => {
+                        return []
+                    })
+            }
+        })
+
+        С помощью extraReducer мы перезаписываем initialState 
 
 
+Структура проекта:
+
+1. Обычно папка store не создается. Создается папка features
+    И эти фичи объединяются по тому что мы хотим сделать
+
+Частый кейс когда selector хранятся прямо в файле с слайсами
 
 
+    Redux-persist:
+        - библиотека для сохранения данных при перезагрузке браузера
+        
+    1. Чтобы начать работу нужно на уровне store сделать import
 
+        import { persistStore, persistReducer } from 'redux-persist'
+        import storage from 'redux-persist/lib/storage'
+        import { combineReducers } from 'redux'
 
+    2. Мы должны подготовить некий config
 
+        const persistConfig = {
+            key: 'root',
+            storage
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    3. Создать переменную rootReducer
+        const rootReducer = combineReducer({
+            todos: todoReducer,
+            filter: filterReducer
+        })
 
 
 
