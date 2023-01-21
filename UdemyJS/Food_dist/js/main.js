@@ -1,3 +1,5 @@
+
+
 window.addEventListener('DOMContentLoaded', () => {
 
     // Tabs
@@ -143,7 +145,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    const modalTimerId = setTimeout(openModal, 3000)
+    // const modalTimerId = setTimeout(openModal, 3000)
 
     function showModalByScroll() {
         if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
@@ -155,8 +157,44 @@ window.addEventListener('DOMContentLoaded', () => {
     // Пользователь долистал до конца страницы
     window.addEventListener('scroll', showModalByScroll)
 })
+
+// Создание карточек через классы
+class MainCard {
+    constructor(img, alt, title, text, price, parentSelector) {
+        this.img = img
+        this.alt = alt
+        this.title = title
+        this.parent = document.querySelector(parentSelector)
+        this.text = text
+        this.price = price
+        this.transfer = 27
+        this.changeToUAH()
+    }
+
+    changeToUAH() {
+        this.price = this.price * this.transfer
+    }
+
+    render() {
+        const element = document.createElement('div')
+        element.innerHTML = `
+        <div class="menu__item">
+            <img src=${this.img} alt=${this.alt}>
+            <h3 class="menu__item-subtitle">Меню "${this.title}"</h3>
+            <div class="menu__item-descr">Меню “${this.title}” - ${this.text}</div>
+            <div class="menu__item-divider"></div>
+            <div class="menu__item-price">
+                <div class="menu__item-cost">Цена:</div>
+                <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+            </div>
+        </div>
+        `
+        this.parent.append(element)
+    }
+}
+
 /*
 forEach(item, i) - по синтаксису 2 элемент отвечает за номер по порядку i - это индекс
-
+render() - метод используется для формирования верстки
 
 */

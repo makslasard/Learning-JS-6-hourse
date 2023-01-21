@@ -142,7 +142,9 @@ ResizeObserver - отслеживает изменения размеров эл
     4. Ручное присвоение this любой функции с помощью bind
 
 
-
+Метод super() - вызывает супер конструктор родителя. Просто вызывает тоже самое что и было у родителя
+    Должен быть всегда на первом месте в constructor. И указать как аргуметры свойства которые мы хотим 
+    использовать
 
 
 
@@ -169,7 +171,7 @@ ResizeObserver - отслеживает изменения размеров эл
 */
 
 // setTimeout
-const timer = setTimeout(function() {
+const timer = setTimeout(function () {
     console.log('Function compleated for 1 ms')
 }, 1000)
 
@@ -184,7 +186,7 @@ function myAnimate() {
     const id = setInterval(frame, 1000)
 
     function frame() {
-        if(position === 300) {
+        if (position === 300) {
             clearInterval(id)
         } else {
             element.style.top = position + 'px'
@@ -251,12 +253,12 @@ function User(name, id) {
     this.name = name
     this.id = id
     this.human = true
-    this.hell0 = function() {
+    this.hell0 = function () {
         console.log(`Hello ${this.name}`)
     }
 }
 
-User.prototype.exit = function() {
+User.prototype.exit = function () {
     console.log(`Пользователь ${this.name} ушел!`)
 }
 
@@ -269,9 +271,32 @@ function count(num) {
 }
 const double = count.bind(User)()
 
-const btnBind = document.querySelector('button') 
+const btnBind = document.querySelector('button')
 
-btn.addEventListener('click', function() {
+btn.addEventListener('click', function () {
     console.log(this) // <button></button>
     // Контекстом вызова будет сама кнопка
 })
+
+// Классы
+
+class Regtangle {
+    constructor(height, width) {
+        this.height = height
+        this.width = width
+
+        calcArea = () => {
+            return this.height * this.width
+        }
+    }
+}
+
+const square = new Regtangle(10, 12)
+
+class ColoredRectanglWithText extends Regtangle {
+    constructor(height, width, color, text) {
+        super(height, width)
+        this.color = color
+        this.text = text
+    }
+}
