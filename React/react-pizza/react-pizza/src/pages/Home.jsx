@@ -1,69 +1,94 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import Categories from '../components/Categories';
-import Sort from '../components/Sort';
-import Skeleton from '../components/Skeleton';
-import PizzaBlock from '../components/PizzaBlock';
-import Pagination from '../components/Pagination';
+import {
+	selectFilter,
+	setCategoryId,
+	setCurrentPage,
+} from '../redux/slices/filterSlice'
 
-const Home = ({ searchValue }) => {
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [categoryId, setCategoryId] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sortType, setSortType] = useState({
-    name: 'популярности',
-    sortProperty: 'rating',
-  });
+import { fetchPizzas } from '../redux/slices/pizzaSlice'
 
-  useEffect(() => {
-    setIsLoading(true);
+import { selectPizza } from '../redux/slices/cartSlice'
 
-    const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
-    const sortBy = sortType.sortProperty.replace('-', '');
-    const category = categoryId > 0 ? `category=${categoryId}` : '';
-    const search = searchValue ? `&search=${searchValue}` : '';
+import Categories from '../components/Categories'
+import Sort from '../components/Sort'
+import Skeleton from '../components/Skeleton'
+import PizzaBlock from '../components/PizzaBlock'
+import Pagination from '../components/Pagination'
+import CartEmty from '../components/CartEmty.tsx'
 
-    fetch(
-      `https://63c03f0ce262345656fb3d97.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setItems(data);
-        setIsLoading(false);
-      });
-    window.scrollTo(0, 0);
-  }, [categoryId, sortType, searchValue, currentPage]);
+const Home = () => {
+	const { items, status } = useSelector(selectPizza)
+	const { categoryId, sortType, currentPage, searchValue } =
+		useSelector(selectFilter)
 
-  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
-  const skeletons = [...new Array(10)].map((_, index) => (
-    <Skeleton key={index} />
-  ));
+	const dispatch = useDispatch()
 
-  return (
-    <div className="container">
-      <div className="content__top">
-        <Categories
-          value={categoryId}
-          onChangeCategory={(i) => setCategoryId(i)}
-        />
-        <Sort value={sortType} onChangeSort={(i) => setSortType(i)} />
-      </div>
-      <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">{isLoading ? skeletons : pizzas}</div>
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
-    </div>
-  );
-};
+	const onChangeCategory = (id) => {
+		dispatch(setCategoryId(id))
+	}
 
-export default Home;
+	const onChangePage = (number) => {
+		dispatch(setCurrentPage(number))
+	}
 
-/*
-      .filter((obj) => {
-        if (obj.title.toLowerCase().includes(searchValue)) {
-          return true;
-        }
-        return false;
-      })
+	const [isLoading, setIsLoading] = useState(true)
 
-*/
+	const getPizzas = async () => {
+		setIsLoading(true)
+
+		const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc'
+		const sortBy = sortType.sortProperty.replace('-', '')
+		const category = categoryId > 0 ? `category=${categoryId}` : ''
+		const search = searchValue ? `&search=${searchValue}` : ''
+
+		dispatch(
+			fetchPizzas({
+				order,
+				sortBy,
+				category,
+				search,
+			})
+		)
+
+		window.scrollTo(0, 0)
+	}
+
+	useEffect(() => {
+		if (window.location.search) {
+			getPizzas()
+		}
+	}, [])
+
+	const pizzas = items.map((obj) => (
+		<Link key={obj.id} to={`/pizza/${obj.id}`}>
+			<PizzaBlock {...obj} />
+		</Link>
+	))
+	const skeletons = [...new Array(10)].map((_, index) => (
+		<Skeleton key={index} />
+	))
+
+	return (
+		<div className="container">
+			<div className="content__top">
+				<Categories value={categoryId} onChangeCategory={onChangeCategory} />
+				<Sort />
+			</div>
+			<h2 className="content__title">Все пиццы</h2>
+			{status === 'error' ? (
+				<CartEmty />
+			) : (
+				<div className="content__items">
+					{status === 'loading' ? skeletons : pizzas}
+				</div>
+			)}
+
+			<Pagination value={currentPage} onChangePage={onChangePage} />
+		</div>
+	)
+}
+
+export default Home

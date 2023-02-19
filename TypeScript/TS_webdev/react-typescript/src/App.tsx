@@ -1,5 +1,5 @@
-import React from 'react';
-import Component from './component';
+import React from 'react'
+import Header from './components/Header'
 
 import data from './mock'
 // type TitleProps = {
@@ -16,13 +16,12 @@ import data from './mock'
 //   </h1>
 // );
 
-const App: React.FC = () => (
-  <Component
-    id={1}
-    title={'Название карточки'}
-    discription={'Описание товара'}
-    data={data}
-  />
-);
+const App: React.FC = () => {
+	return (
+		<>
+			<Header id={''} title={''} discription={''} />
+		</>
+	)
+}
 
-export default App;
+export default App
