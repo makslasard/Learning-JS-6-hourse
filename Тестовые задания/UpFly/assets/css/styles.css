@@ -87,6 +87,7 @@ header {
 	display: none;
 }
 .header_hamburger_close {
+	cursor: pointer;
 	position: absolute;
 	top: 29px;
 	right: 65px;
@@ -105,8 +106,7 @@ header {
 	margin-right: 10px;
 }
 .header__hamburger_logo {
-	margin-top: 24px;
-	margin-left: 320px;
+	margin-top: 20px;
 }
 
 .header__hamburger_social {
@@ -121,10 +121,6 @@ header {
 }
 
 .header__hamburger_list {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
 	margin-bottom: 25px;
 }
 
@@ -134,7 +130,10 @@ header {
 }
 
 .header__hamburger_menu {
-	width: 768px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
 	height: 400px;
 	background-color: #d8bfa9;
 }
@@ -198,8 +197,8 @@ main {
 
 .main__left_star {
 	position: absolute;
-	top: -50px;
-	left: -150px;
+	top: -20px;
+	left: -90px;
 }
 .main__left_star-tablet {
 	display: none;
@@ -345,13 +344,19 @@ main {
 
 .form {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	height: 518px;
 	width: 746px;
 	background-color: var(--background-color);
-	margin-left: 543px;
-	margin-top: 200px;
-	padding-left: 190px;
-	padding-top: 100px;
+	padding-top: 55px;
+	padding-right: 100px;
+	padding-left: 100px;
+
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 .form__star {
 	position: absolute;
@@ -366,21 +371,17 @@ main {
 
 .form__title {
 	font-size: 42px;
-	font-weight: var(--font-light);
 	color: var(--main-color);
-	padding-left: 130px;
-	font-weight: 500;
 }
 .form__close {
-	height: 20px;
-	width: 20px;
-	margin-left: 270px;
-	margin-top: -200px;
+	position: absolute;
+	right: 30px;
+	top: 30px;
 	cursor: pointer;
 }
 .form__text {
 	font-size: 18px;
-	color: var(--font-light);
+	font-family: var(--font-subtitles);
 	margin-bottom: 15px;
 	margin-top: 30px;
 }
@@ -426,6 +427,13 @@ main {
 		max-width: 768px;
 	}
 
+	header {
+		gap: 220px;
+	}
+
+	.header__logo {
+	}
+
 	.header__hamburger {
 		display: block;
 	}
@@ -441,13 +449,20 @@ main {
 	}
 	.main__left_star-tablet {
 		position: absolute;
-		top: -7px;
-		left: -15px;
+		top: -49px;
+		left: -22px;
 		display: block;
+	}
+
+	.header__phone {
+		min-width: 160px;
 	}
 
 	main {
 		text-align: center;
+	}
+	.main__left_title {
+		margin-top: 25px;
 	}
 	.main__right_foto {
 		display: none;
@@ -461,7 +476,7 @@ main {
 	}
 	.footer__title::before {
 		top: 0;
-		left: 135px;
+		left: 105px;
 	}
 	.footer__svg_steps {
 		display: none;
@@ -495,22 +510,10 @@ main {
 
 	.form {
 		position: relative;
-		margin-left: 41px;
 		padding-left: 50px;
 		padding-top: 45px;
 		width: 606px;
 		height: 512px;
-	}
-
-	.form__block {
-		padding-top: 30px;
-		padding-left: 40px;
-		display: flex;
-	}
-	.form__close {
-		position: absolute;
-		top: 211px;
-		right: 12px;
 	}
 
 	.form__input {
@@ -522,12 +525,10 @@ main {
 	}
 
 	.form__text {
-		font-family: var(--font-light);
 	}
 
 	.form__title {
-		min-width: 237px;
-		font-size: var(--h2-font-size-tablet);
+		/* min-width: 237px; */
 	}
 }
 /* Adaptive 320px */
@@ -540,12 +541,15 @@ main {
 		max-width: 320px;
 	}
 
+	header {
+		gap: 100px;
+	}
+
 	.header__navigate {
 		display: none;
 	}
 
 	.header__hamburger {
-		position: absolute;
 	}
 
 	.header__phone {
@@ -571,6 +575,14 @@ main {
 		text-align: center;
 	}
 
+	.main__left_title {
+		font-size: 42px;
+		margin-top: -10px;
+	}
+	.main__left_subtitle {
+		font-size: 18px;
+	}
+
 	.main__right_foto {
 		display: none;
 	}
@@ -587,8 +599,13 @@ main {
 	footer {
 	}
 
+	.footer__title {
+		font-size: 28px;
+	}
+
 	.footer__title::before {
-		margin-left: -80px;
+		top: -4px;
+		left: 0;
 	}
 	.footer__steps {
 		display: flex;
@@ -610,27 +627,20 @@ main {
 	}
 
 	.form {
-		margin-left: 0px;
-		margin-top: 0px;
-		width: 320px;
-		height: 568px;
+		margin-left: 15px;
+		height: 100%;
 	}
 
 	.form__block {
-		margin-left: -140px;
 	}
 
 	.form__title {
 		font-size: 25px;
 	}
 	.form__close {
-		position: absolute;
-		top: 0px;
-		right: 0px;
 	}
 	.form__text {
 		font-size: 14px;
-		font-family: var(--font-light);
 		margin-left: -35px;
 	}
 	.form__input {
