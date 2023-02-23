@@ -1,13 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react'
-
 import { useDispatch, useSelector } from 'react-redux'
-
 import { selectSort, setSortType } from '../redux/slices/filterSlice'
 
 interface ISortItems {
 	id: number
 	name: string
 	sortProperty: string
+}
+
+type PopupClick = React.MouseEvent<HTMLBodyElement> & {
+	path: Node[]
 }
 
 const sortItems: ISortItems[] = [
@@ -30,8 +32,8 @@ const Sort: React.FC = () => {
 
 	// Клик на пустую область
 	useEffect(() => {
-		const handleClickOutside = (event: React.MouseEvent<HTMLInputElement>) => {
-			if (!event.path.includes(sortRef.current)) {
+		const handleClickOutside = (event: PopupClick) => {
+			if (sortRef.current && !event.path.includes(sortRef.current)) {
 				setOpen(false)
 			}
 		}

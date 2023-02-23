@@ -17,21 +17,21 @@ import Sort from '../components/Sort'
 import Skeleton from '../components/Skeleton'
 import PizzaBlock from '../components/PizzaBlock'
 import Pagination from '../components/Pagination'
-import CartEmty from '../components/CartEmty.tsx'
+import CartEmty from '../components/CartEmty'
 
-const Home = () => {
+const Home: React.FC = () => {
 	const { items, status } = useSelector(selectPizza)
 	const { categoryId, sortType, currentPage, searchValue } =
 		useSelector(selectFilter)
 
 	const dispatch = useDispatch()
 
-	const onChangeCategory = (id) => {
+	const onChangeCategory = (id: number) => {
 		dispatch(setCategoryId(id))
 	}
 
-	const onChangePage = (number) => {
-		dispatch(setCurrentPage(number))
+	const onChangePage = (value: number) => {
+		dispatch(setCurrentPage(value))
 	}
 
 	const [isLoading, setIsLoading] = useState(true)
@@ -45,6 +45,7 @@ const Home = () => {
 		const search = searchValue ? `&search=${searchValue}` : ''
 
 		dispatch(
+			// @ts-ignore
 			fetchPizzas({
 				order,
 				sortBy,
@@ -62,7 +63,7 @@ const Home = () => {
 		}
 	}, [])
 
-	const pizzas = items.map((obj) => (
+	const pizzas = items.map((obj: any) => (
 		<Link key={obj.id} to={`/pizza/${obj.id}`}>
 			<PizzaBlock {...obj} />
 		</Link>

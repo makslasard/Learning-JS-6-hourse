@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux'
 import { addItem, minusItem, removeItem } from '../redux/slices/cartSlice'
 
 interface ICartItemProps {
-	id: number
+	id: string
 	title: string
-	type: number
+	type: string
 	price: number
 	count: number
 	imageUrl: string

@@ -16,8 +16,8 @@
 
 		<header class="header" id="header">
 			<!--================== HAMBURGER ==================-->
-			<section class="header__hamburger_content">
-				<section class="header__hamburger_menu" id="hamburger__menu">
+			<div class="header__hamburger_content">
+				<div class="header__hamburger_menu" id="hamburger__menu">
 					<img
 						class="header__hamburger_logo"
 						src="assets/img/logoTablet.svg"
@@ -28,15 +28,23 @@
 						alt=""
 						class="header_hamburger_close"
 					/>
-					<section class="header__hamburger_list">
+					<div class="header__hamburger_list">
 						<ul class="header__hamburger_item">
-							<li class="header__hamburger_item">Букеты</li>
-							<li class="header__hamburger_item">Отзывы</li>
-							<li class="header__hamburger_item">Доставка и оплата</li>
-							<li class="header__hamburger_item">Контакты</li>
+							<li class="header__hamburger_item">
+								<a href="/">Букеты</a>
+							</li>
+							<li class="header__hamburger_item">
+								<a href="/">Отзывы</a>
+							</li>
+							<li class="header__hamburger_item">
+								<a href="/">Доставка и оплата</a>
+							</li>
+							<li class="header__hamburger_item">
+								<a href="/">Контакты</a>
+							</li>
 						</ul>
-					</section>
-					<section class="header__hamburger_social">
+					</div>
+					<div class="header__hamburger_social">
 						<a href="https://twitter.com">
 							<img src="assets/img/birdHamburger.svg" alt="twitter" />
 						</a>
@@ -49,34 +57,42 @@
 						<a href="https://youtube.com">
 							<img src="assets/img/blueHamburger.svg" alt="facebook" />
 						</a>
-					</section>
-				</section>
-			</section>
+					</div>
+				</div>
+			</div>
 			<!--====================================-->
-			<section class="header__hamburger">
+			<div class="header__hamburger">
 			<img src="assets/img/gamburger.svg"	alt="hamburger__menu"/>
-			</section>
-			<section class="header__logo">
+			</div>
+			<div class="header__logo">
 				<img  src="assets/img/logo.svg" alt="logo" />
-			</section>
+			</div>
 			<nav class="header__navigate" id="navigate">
 				<ul class="header_list">
-					<li class="header__item">Букеты</li>
-					<li class="header__item">Отзывы</li>
-					<li class="header__item">Доставка и оплата</li>
-					<li class="header__item">Контакты</li>
+					<li class="header__item">
+						<a href="">Букеты</a>
+					</li>
+					<li class="header__item">
+						<a href="">Отзывы</a>
+					</li>
+					<li class="header__item">
+						<a href="">Доставка и оплата</a>
+					</li>
+					<li class="header__item">
+						<a href="">Контакты</a>
+					</li>
 				</ul>
 			</nav>
-			<section class="header__phone">
+			<div class="header__phone">
 				<img class="header__phone_img" src="assets/img/phone.svg" alt="phone" />
 				<p class="header__phone_number">+7 (960) 210-22-23</p>
-			</section>
+			</div>
 		</header>
 
 		<!--================== MAIN ==================-->
 
 		<main class="main" id="main">
-			<section class="main__left">
+			<div class="main__left">
 				<img class="main__left_star" src="assets/img/star.svg" alt="star" />
 				<img
 					class="main__left_star-tablet"
@@ -89,9 +105,9 @@
 					Каждый день мы создаем новую композицию из свежих, сезонных цветов
 				</p>
 				<button class="main__left_button">Заказать сейчас</button>
-			</section>
-			<section class="main__right">
-				<section class="main__right_foto">
+			</div>
+			<div class="main__right">
+				<div class="main__right_foto">
 					<!-- testGirl.svg для проверки смены фото -->
 					<img
 						src="assets/img/girl.svg"
@@ -103,8 +119,8 @@
 						alt="border"
 						class="main__right_foto-border"
 					/>
-				</section>
-				<section class="main__right_social">
+				</div>
+				<div class="main__right_social">
 					<a href="https://twitter.com">
 						<img
 							src="assets/img/bird.svg"
@@ -133,19 +149,19 @@
 							class="main__right_social-svg"
 						/>
 					</a>
-				</section>
-			</section>
+				</div>
+			</div>
 		</main>
 
 		<!--================== FOOTER ==================-->
 
 		<footer class="footer" id="footer">
 			<h3 class="footer__title">5 шагов к авторскому букету</h3>
-			<section class="footer__svg">
+			<div class="footer__svg">
 				<img src="assets/img/steps.svg" alt="steps" class="footer__svg_steps" />
-			</section>
-			<section class="footer__steps">
-				<section class="footer__steps_points" id="footer__steps_1">
+			</div>
+			<div class="footer__steps">
+				<div class="footer__steps_points" id="footer__steps_1">
 					<img
 						class="footer__steps_tablet"
 						src="assets/img/orderSteps.svg"
@@ -155,9 +171,9 @@
 					<p class="footer__steps_description">
 						Выберите букет и оформите заказ
 					</p>
-				</section>
+				</div>
 
-				<section class="footer__steps_points" id="footer__steps_2">
+				<div class="footer__steps_points" id="footer__steps_2">
 					<img
 						class="footer__steps_tablet"
 						src="assets/img/phoneSteps.svg"
@@ -167,9 +183,9 @@
 					<p class="footer__steps_description">
 						Мы вам перезвоним в течение 10 минут и уточним детали
 					</p>
-				</section>
+				</div>
 
-				<section class="footer__steps_points" id="footer__steps_3">
+				<div class="footer__steps_points" id="footer__steps_3">
 					<img
 						class="footer__steps_tablet"
 						src="assets/img/cardSteps.svg"
@@ -179,9 +195,9 @@
 					<p class="footer__steps_description">
 						Оплатите онлайн или при получении
 					</p>
-				</section>
+				</div>
 
-				<section class="footer__steps_points" id="footer__steps_4">
+				<div class="footer__steps_points" id="footer__steps_4">
 					<img
 						class="footer__steps_tablet"
 						src="assets/img/flowerSteps.svg"
@@ -191,9 +207,9 @@
 					<p class="footer__steps_description">
 						Соберем букет с учетом ваших пожеланий и упакуем для доставки
 					</p>
-				</section>
+				</div>
 
-				<section class="footer__steps_points" id="footer__steps_5">
+				<div class="footer__steps_points" id="footer__steps_5">
 					<img
 						class="footer__steps_tablet"
 						src="assets/img/deliverySteps.svg"
@@ -203,10 +219,10 @@
 					<p class="footer__steps_description">
 						Курьер позвонит за час и доставит букет во время
 					</p>
-				</section>
-			</section>
-			<section class="footer__steps_div">
-				<section class="footer__steps_points">
+				</div>
+			</div>
+			<div class="footer__steps_div">
+				<div class="footer__steps_points">
 					<img
 						class="footer__steps_tablet"
 						src="assets/img/flowerSteps.svg"
@@ -216,9 +232,9 @@
 					<p class="footer__steps_description">
 						Соберем букет с учетом ваших пожеланий и упакуем для доставки
 					</p>
-				</section>
+				</div>
 	
-				<section class="footer__steps_points">
+				<div class="footer__steps_points">
 					<img
 						class="footer__steps_tablet"
 						src="assets/img/deliverySteps.svg"
@@ -228,30 +244,291 @@
 					<p class="footer__steps_description">
 						Курьер позвонит за час и доставит букет во время
 					</p>
-				</section>
-			</section>
+				</div>
+			</div>
 		</footer>
-	</section>
+	</div>
 		<!--================== FORM ==================-->
 		<div class="popup" id="popup">
 			<form class="form">
-				<section class="form__block">
+				<div class="form__block">
 					<img src="assets/img/starPopup.svg" alt="star" class="form__star" />
 					<h3 class="form__title">Обратный звонок</h3>
 					<img src="assets/img/close.svg" class="form__close" alt="close" />
-				</section>
-				<section>
+				</div>
+				<div>
 					<p class="form__text">*Имя</p>
 					<input type="text" class="form__input" />
-				</section>
-				<section>
+				</div>
+				<div>
 					<p class="form__text">*Телефон</p>
 					<input type="text" class="form__input" />
 					<p class="form__text_approval">
 						*Нажимия кнопку “Оставить заявку” я даю согласие на обработку данных
 					</p>
 					<button class="form__button">Отправить заявку</button>
-				</section>
+				</div>
+			</form>
+		</div>
+
+		<!--================== MAIN JS ==================-->
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+
+		<!--================== CSS ==================-->
+		<link rel="stylesheet" href="assets/css/styles.css" />
+
+		<title>WILD FLOWER</title>
+	</head>
+	<body>
+		<!--================== HEADER ==================-->
+
+		<header class="header" id="header">
+			<!--================== HAMBURGER ==================-->
+			<div class="header__hamburger_content">
+				<div class="header__hamburger_menu" id="hamburger__menu">
+					<img
+						class="header__hamburger_logo"
+						src="assets/img/logoTablet.svg"
+						alt="logo"
+					/>
+					<img
+						src="assets/img/closeTablet.svg"
+						alt=""
+						class="header_hamburger_close"
+					/>
+					<div class="header__hamburger_list">
+						<ul class="header__hamburger_item">
+							<li class="header__hamburger_item">Букеты</li>
+							<li class="header__hamburger_item">Отзывы</li>
+							<li class="header__hamburger_item">Доставка и оплата</li>
+							<li class="header__hamburger_item">Контакты</li>
+						</ul>
+					</div>
+					<div class="header__hamburger_social">
+						<a href="https://twitter.com">
+							<img src="assets/img/birdHamburger.svg" alt="twitter" />
+						</a>
+						<a href="http://facebook.com">
+							<img src="assets/img/pinterestHamburger.svg" alt="pinterest" />
+						</a>
+						<a href="https://pinterest.com">
+							<img src="assets/img/youtubeHamburger.svg" alt="youtube" />
+						</a>
+						<a href="https://youtube.com">
+							<img src="assets/img/blueHamburger.svg" alt="facebook" />
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--====================================-->
+			<div class="header__hamburger">
+			<img src="assets/img/gamburger.svg"	alt="hamburger__menu"/>
+			</div>
+			<div class="header__logo">
+				<img  src="assets/img/logo.svg" alt="logo" />
+			</div>
+			<nav class="header__navigate" id="navigate">
+				<ul class="header_list">
+					<li class="header__item">Букеты</li>
+					<li class="header__item">Отзывы</li>
+					<li class="header__item">Доставка и оплата</li>
+					<li class="header__item">Контакты</li>
+				</ul>
+			</nav>
+			<div class="header__phone">
+				<img class="header__phone_img" src="assets/img/phone.svg" alt="phone" />
+				<p class="header__phone_number">+7 (960) 210-22-23</p>
+			</div>
+		</header>
+
+		<!--================== MAIN ==================-->
+
+		<main class="main" id="main">
+			<div class="main__left">
+				<img class="main__left_star" src="assets/img/star.svg" alt="star" />
+				<img
+					class="main__left_star-tablet"
+					src="assets/img/starTablet.svg"
+					alt="star"
+				/>
+
+				<h1 class="main__left_title">Цветы для самых любимых</h1>
+				<p class="main__left_subtitle">
+					Каждый день мы создаем новую композицию из свежих, сезонных цветов
+				</p>
+				<button class="main__left_button">Заказать сейчас</button>
+			</div>
+			<div class="main__right">
+				<div class="main__right_foto">
+					<!-- testGirl.svg для проверки смены фото -->
+					<img
+						src="assets/img/girl.svg"
+						alt="girl"
+						class="main__right_foto-girl"
+					/>
+					<img
+						src="assets/img/border.svg"
+						alt="border"
+						class="main__right_foto-border"
+					/>
+				</div>
+				<div class="main__right_social">
+					<a href="https://twitter.com">
+						<img
+							src="assets/img/bird.svg"
+							alt="twitter"
+							class="main__right_social-svg"
+						/>
+					</a>
+					<a href="http://facebook.com">
+						<img
+							src="assets/img/blue.svg"
+							alt="facebook"
+							class="main__right_social-svg"
+						/>
+					</a>
+					<a href="https://pinterest.com">
+						<img
+							src="assets/img/pinterest.svg"
+							alt="pinterest"
+							class="main__right_social-svg"
+						/>
+					</a>
+					<a href="https://youtube.com">
+						<img
+							src="assets/img/YouTube.svg"
+							alt="youtube"
+							class="main__right_social-svg"
+						/>
+					</a>
+				</div>
+			</div>
+		</main>
+
+		<!--================== FOOTER ==================-->
+
+		<footer class="footer" id="footer">
+			<h3 class="footer__title">5 шагов к авторскому букету</h3>
+			<div class="footer__svg">
+				<img src="assets/img/steps.svg" alt="steps" class="footer__svg_steps" />
+			</div>
+			<div class="footer__steps">
+				<div class="footer__steps_points" id="footer__steps_1">
+					<img
+						class="footer__steps_tablet"
+						src="assets/img/orderSteps.svg"
+						alt="orderStaps-tablet"
+					/>
+					<h4 class="footer__steps_title">Заказ</h4>
+					<p class="footer__steps_description">
+						Выберите букет и оформите заказ
+					</p>
+				</div>
+
+				<div class="footer__steps_points" id="footer__steps_2">
+					<img
+						class="footer__steps_tablet"
+						src="assets/img/phoneSteps.svg"
+						alt="phoneSteps-tablet"
+					/>
+					<h4 class="footer__steps_title">Детали</h4>
+					<p class="footer__steps_description">
+						Мы вам перезвоним в течение 10 минут и уточним детали
+					</p>
+				</div>
+
+				<div class="footer__steps_points" id="footer__steps_3">
+					<img
+						class="footer__steps_tablet"
+						src="assets/img/cardSteps.svg"
+						alt="cardSteps-tablet"
+					/>
+					<h4 class="footer__steps_title">Оплата</h4>
+					<p class="footer__steps_description">
+						Оплатите онлайн или при получении
+					</p>
+				</div>
+
+				<div class="footer__steps_points" id="footer__steps_4">
+					<img
+						class="footer__steps_tablet"
+						src="assets/img/flowerSteps.svg"
+						alt="flowerSteps-tablet"
+					/>
+					<h4 class="footer__steps_title">Сборка и упаковка</h4>
+					<p class="footer__steps_description">
+						Соберем букет с учетом ваших пожеланий и упакуем для доставки
+					</p>
+				</div>
+
+				<div class="footer__steps_points" id="footer__steps_5">
+					<img
+						class="footer__steps_tablet"
+						src="assets/img/deliverySteps.svg"
+						alt="deliverySteps-tablet"
+					/>
+					<h4 class="footer__steps_title">Доставка</h4>
+					<p class="footer__steps_description">
+						Курьер позвонит за час и доставит букет во время
+					</p>
+				</div>
+			</div>
+			<div class="footer__steps_div">
+				<div class="footer__steps_points">
+					<img
+						class="footer__steps_tablet"
+						src="assets/img/flowerSteps.svg"
+						alt="flowerSteps-tablet"
+					/>
+					<h4 class="footer__steps_title">Сборка и упаковка</h4>
+					<p class="footer__steps_description">
+						Соберем букет с учетом ваших пожеланий и упакуем для доставки
+					</p>
+				</div>
+	
+				<div class="footer__steps_points">
+					<img
+						class="footer__steps_tablet"
+						src="assets/img/deliverySteps.svg"
+						alt="deliverySteps-tablet"
+					/>
+					<h4 class="footer__steps_title">Доставка</h4>
+					<p class="footer__steps_description">
+						Курьер позвонит за час и доставит букет во время
+					</p>
+				</div>
+			</div>
+		</footer>
+	</div>
+		<!--================== FORM ==================-->
+		<div class="popup" id="popup">
+			<form class="form">
+				<div class="form__block">
+					<img src="assets/img/starPopup.svg" alt="star" class="form__star" />
+					<h3 class="form__title">Обратный звонок</h3>
+					<img src="assets/img/close.svg" class="form__close" alt="close" />
+				</div>
+				<div>
+					<p class="form__text">*Имя</p>
+					<input type="text" class="form__input" />
+				</div>
+				<div>
+					<p class="form__text">*Телефон</p>
+					<input type="text" class="form__input" />
+					<p class="form__text_approval">
+						*Нажимия кнопку “Оставить заявку” я даю согласие на обработку данных
+					</p>
+					<button class="form__button">Отправить заявку</button>
+				</div>
 			</form>
 		</div>
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 interface ICategoriesProps {
   value: number
-  onChangeCategory: any
+  onChangeCategory: (i: number) => void
 }
 
 const Categories: React.FC<ICategoriesProps> = ({ value, onChangeCategory }) => {

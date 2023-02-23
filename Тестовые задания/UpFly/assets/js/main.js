@@ -31,4 +31,3 @@ if (screenWidth >= 1440 && screenWidth <= 1920) headerContent.style.display = 'n
 if (screenWidth >= 1024 && screenWidth <= 1440) headerContent.style.display = 'none'
 if (screenWidth >= 768 && screenWidth <= 1024) headerContent.style.display = 'none'
 if (screenWidth >= 320 && screenWidth <= 768) headerContent.style.display = 'none'
-

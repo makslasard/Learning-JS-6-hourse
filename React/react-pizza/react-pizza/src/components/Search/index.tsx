@@ -9,17 +9,17 @@ import closeSvg from '../../assets/img/close.svg'
 
 import style from './Search.module.scss'
 
-const Search = () => {
+const Search: React.FC = () => {
 	const dispatch = useDispatch()
 
-	const { value, setValue } = useState('')
+	const { value, setValue } = useState<string>('')
 
-	const inputRef = useRef()
+	const inputRef = useRef<HTMLInputElement>(null)
 
-	const onClickClear = () => {
+	const onClickClear = (event: React.MouseEvent<SVGSVGElement>) => {
 		dispatch(setSearchValue(''))
 		setValue('')
-		inputRef.current.focus()
+		inputRef.current?.focus()
 	}
 
 	const updateSearchValue = useCallback(
@@ -29,7 +29,7 @@ const Search = () => {
 		[]
 	)
 
-	const onChangeInput = (event) => {
+	const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(event.target.value)
 		updateSearchValue(event.target.value)
 	}
