@@ -156,28 +156,27 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Пользователь долистал до конца страницы
     window.addEventListener('scroll', showModalByScroll)
-})
 
-// Создание карточек через классы
-class MainCard {
-    constructor(img, alt, title, text, price, parentSelector) {
-        this.img = img
-        this.alt = alt
-        this.title = title
-        this.parent = document.querySelector(parentSelector)
-        this.text = text
-        this.price = price
-        this.transfer = 27
-        this.changeToUAH()
-    }
+    // Создание карточек через классы
+    class MainCard {
+        constructor(img, alt, title, text, price, parentSelector) {
+            this.img = img
+            this.alt = alt
+            this.title = title
+            this.parent = document.querySelector(parentSelector)
+            this.text = text
+            this.price = price
+            this.transfer = 27
+            this.changeToUAH()
+        }
 
-    changeToUAH() {
-        this.price = this.price * this.transfer
-    }
+        changeToUAH() {
+            this.price = this.price * this.transfer
+        }
 
-    render() {
-        const element = document.createElement('div')
-        element.innerHTML = `
+        render() {
+            const element = document.createElement('div')
+            element.innerHTML = `
         <div class="menu__item">
             <img src=${this.img} alt=${this.alt}>
             <h3 class="menu__item-subtitle">Меню "${this.title}"</h3>
@@ -189,9 +188,53 @@ class MainCard {
             </div>
         </div>
         `
-        this.parent.append(element)
+            this.parent.append(element)
+        }
     }
+    const div = new MainCard(
+        '../img/tabs/vegy.jpg',
+        'vegy',
+        'Вегетерианское',
+        'это соответствие вашего рациона всем научным рекомендациям. Мы тщательно просчитываем вашу потребность в к/б/ж/у и создаем лучшие блюда для вас.',
+        230,
+        '.menu .container'
+    ).render()
+})
+
+// Form
+
+const form = document.querySelector('form')
+
+const message = {
+    loading: 'Загрузка',
+    success: 'Спасибо, скоро мы с вами свяжемся!',
+    failure: 'Что-то пошло не так...'
 }
+
+function postData(form) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+
+        const statusMessage = document.createElement('div')
+        statusMessage.classList.add('status')
+        statusMessage.textContent = message.loading
+        form.append(statusMessage)
+
+        const request = new XMLHttpRequest()
+        request.open('POST', 'server.php') // Метод, и локальный сервер на который мы будем ссылаться
+
+        request.setRequestHeader('Content-type', 'multipart/form-data')
+        const formData = new FormData(form)
+
+        request.send(formData)
+        request.addEventListener('load', () => {
+            if (request.status === 200) {
+                console.log(request.response)
+            }
+        })
+    })
+}
+
 
 /*
 forEach(item, i) - по синтаксису 2 элемент отвечает за номер по порядку i - это индекс

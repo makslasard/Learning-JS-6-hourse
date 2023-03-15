@@ -46,7 +46,6 @@
 // regexp.test(str) - ищет совпадения с regexp в строке str.
 // console.log(/love/.test('I love love you')) - выдает true или false
 
-
 // Буквенные классы
 // \d - любая цифра
 // \w - латинская буква, цифра, _

@@ -300,3 +300,10 @@ class ColoredRectanglWithText extends Regtangle {
         this.text = text
     }
 }
+
+// Использование spred/rest
+
+const restFunct = (a = 2, b, ...c) => {
+    console.log(a, b, ...c)
+}
+restFunct(1, 2, 3, 4, 5)
