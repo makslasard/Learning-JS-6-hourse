@@ -157,6 +157,26 @@ window.addEventListener('DOMContentLoaded', () => {
     // Пользователь долистал до конца страницы
     window.addEventListener('scroll', showModalByScroll)
 
+
+    const getResource = async (url) => {
+        try {
+            const response = await fetch(url)
+
+            if (!response.ok) {
+                throw new Error(`Could not fetch ${url}, status: ${response.status}`)
+            }
+
+            return await response.json()
+        } catch (e) {
+            console.error('Произошла ошибка!')
+        }
+    }
+
+    getResource('https://localhost:3000/menu').then(data => {
+        data.forEach(({ img, altimg, title, description, price }) => {
+            new MainCard(img, altimg, title, description, price, '.menu .container').render()
+        })
+    })
     // Создание карточек через классы
     class MainCard {
         constructor(img, alt, title, text, price, parentSelector) {
@@ -201,6 +221,14 @@ window.addEventListener('DOMContentLoaded', () => {
     ).render()
 })
 
+// axios - автоматически конвертирует json в объект. Объект настроек
+axios.get('https://localhost:3000/menu')
+    .then(data => {
+        data.data.forEach(({ img, altimg, title, description, price }) => {
+            new MainCard(img, altimg, title, description, price, '.menu .container').render()
+        })
+    })
+
 // Form
 
 const form = document.querySelector('form')
@@ -211,7 +239,27 @@ const message = {
     failure: 'Что-то пошло не так...'
 }
 
-function postData(form) {
+form.forEach(item => {
+    bindPostData(item)
+})
+
+const postData = async (url, data) => {
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: data
+        })
+        return await response.json()
+    } catch (e) {
+        console.error('Произошла ошибка!')
+    }
+}
+
+
+function bindPostData(form) {
     form.addEventListener('submit', (e) => {
         e.preventDefault()
 
@@ -220,20 +268,139 @@ function postData(form) {
         statusMessage.textContent = message.loading
         form.append(statusMessage)
 
-        const request = new XMLHttpRequest()
-        request.open('POST', 'server.php') // Метод, и локальный сервер на который мы будем ссылаться
+        // const request = new XMLHttpRequest()
+        // request.open('POST', 'server.php') // Метод, и локальный сервер на который мы будем ссылаться
 
-        request.setRequestHeader('Content-type', 'multipart/form-data')
+        // request.setRequestHeader('Content-type', 'multipart/form-data')
         const formData = new FormData(form)
 
-        request.send(formData)
-        request.addEventListener('load', () => {
-            if (request.status === 200) {
-                console.log(request.response)
-            }
+        const object = {}
+        formData.forEach(function (value, key) {
+            object[key] = value
         })
+
+        request.send(formData)
+
+        postData('server.php', JSON.stringify(object))
+            .then(data => {
+                data.text()
+            }).then(data => {
+                console.log(data)
+                showThinkModal(message.success)
+                form.reset()
+                statusMessage.remove()
+            }).catch(() => {
+                showThinkModal(message.failure)
+            }).finally(() => {
+                form.reset()
+            })
+
+
+
+
+
     })
+    // Slider
+    const slides = document.querySelectorAll('.offer__slide'),
+        prev = document.querySelector('.offer__slider-prev'),
+        next = document.querySelector('.offer__slider-next'),
+        total = document.querySelector('#total'),
+        current = document.querySelector('#current'),
+        slidesWrapper = document.querySelector('.offer__slider-wrapper'),
+        slidesField = document.querySelector('.offer__slide-inner'),
+        width = window.getComputedStyle(slidesWrapper).width
+
+    let slideIndex = 1
+    let offset = 0
+
+    if (slides.length < 10) {
+        total.textContent = `0${slides.length}`
+        current.textContent = `0${slideIndex}`
+    } else {
+        total.textContent = slides.length
+        current.textContent = slideIndex
+    }
+
+    slidesField.style.width = 100 * slides.length + '%'
+    slidesField.style.display = 'flex'
+    slidesField.style.transition = '0.5s all'
+
+    slidesWrapper.style.overflow = 'hidden'
+
+    slides.forEach(slide => {
+        slide.style.width = width
+    })
+
+    next.addEventListener('click', () => {
+        if (offset === +width.slice(0, width.length - 2) * (slides - 1)) {
+            offset = 0
+        } else {
+            offset += +width.slice(0, width.length - 2)
+        }
+
+        slidesField.style.transform = `translateX(-${offset}px)`
+
+        if (slideIndex == slides.length) {
+            slideIndex = 1
+        } else {
+            slideIndex++
+        }
+
+        if (slides.length < 10) {
+            current.textContent = `0${slideIndex}`
+        } else {
+            current.textContent = slideIndex
+        }
+    })
+
+    prev.addEventListener('click', () => {
+        if (offset = 0) {
+            offset = +width.slice(0, width.length - 2) * (slides - 1)
+        } else {
+            offset -= +width.slice(0, width.length - 2)
+        }
+
+        slidesField.style.transform = `translateX(-${offset}px)`
+    })
+
+    // showSlides(slideIndex)
+
+    // if (slides.length < 10) {
+    //     total.textContent = `0${slides.length}`
+    // } else {
+    //     total.textContent = slides.length
+    // }
+
+    // const showSlides = (n) => {
+    //     if (n > slides.length) slideIndex = 1
+    //     if (n < 1) slideIndex = slides.length
+
+    //     slides.forEach(item => {
+    //         item.style.display = 'none'
+    //     })
+
+    //     slides[slideIndex - 1].style.display = 'block'
+
+    //     if (slides.length < 10) {
+    //         current.textContent = `0${slideIndex}`
+    //     } else {
+    //         current.textContent = slideIndex
+    //     }
+    // }
+
+    // const plusSlides = (n) => {
+    //     showSlides(slideIndex += n)
+    // }
+
+    // prev.addEventListener('click', () => {
+    //     plusSlides(-1)
+    // })
+
+    // next.addEventListener('click', () => {
+    //     plusSlides(+1)
+    // })
 }
+
 
 
 /*
