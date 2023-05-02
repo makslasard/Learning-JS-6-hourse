@@ -49,9 +49,24 @@
 // fetch - для запросов на сервер и получения данных
 // .catch() - сценарий при ошибке. При reject
 // .then() - сценарий при успешном запросе. При resolve
-    
+
 /*
 fetch(...Некоторая ссылка куда будет делаться запрос)
  .then(response => response.json())
  .then(data => console.log(data))
 */
+
+const data = new Promise((resolve, reject) => {
+    try {
+        const { users } = axios.get(URL)
+        resolve()
+    } catch (error) {
+        console.error(error)
+        reject()
+    }
+}).then((users) => {
+    dispatch(addUsers(users))
+})
+const users = createSlice({
+    initialState: {}
+})

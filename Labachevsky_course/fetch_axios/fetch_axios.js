@@ -10,7 +10,7 @@ post - чтобы отправить данные
 //     .get('https://fortnite-api.com/v1/map', {
 //         headers: {
 //             'Content-Type': 'application/json',
-//             Authorization: ''
+//             Authorization: 'API_APP_KEY'
 //         }
 //     })
 //     .then(response => {
