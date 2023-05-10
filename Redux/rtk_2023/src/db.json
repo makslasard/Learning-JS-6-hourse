@@ -1,0 +1,24 @@
+{
+	"recipe": [
+		{
+			"id": 1,
+			"name": "Apple Frangipan Tart",
+			"image": "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpeg"
+		},
+		{
+			"id": 2,
+			"name": "Orange Frangipan Tart",
+			"image": "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpeg"
+		},
+		{
+			"id": 3,
+			"name": "Cucumber Frangipan Tart",
+			"image": "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpeg"
+		},
+		{
+			"id": 4,
+			"name": "Potato Frangipan Tart",
+			"image": "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpeg"
+		}
+	]
+}

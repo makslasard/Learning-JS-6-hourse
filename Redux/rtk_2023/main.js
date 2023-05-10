@@ -36,6 +36,19 @@ RTK Query - это часть RTK которая предостовляет ре
         Наша функция описана теперь нам нужно описать ExtraReducer
 
 
+    Redux Middleware
+        - это функция которая получает данные после отправки экшена. Далее она может их проверить
+            или сделать что-то с ними, а затем передать дальше по цепочке в редюсер
+
+            Благодаря middleware имееться замечательная возможность производить нужные 
+                промежуточные действия в момент, когда пользователь взаимойствует с интерфейсом
+
+    План типизации проекта:
+        1. Создаем папку types
+        2. Внутри папки создаем типизацию для компонента
+        3. 
+
+
 
 */
 
@@ -55,26 +68,59 @@ RTK Query - это часть RTK которая предостовляет ре
 */
 
 const iqTest = (stringNumbers) => {
-    const arrayNumbers = [...stringNumbers].filter((item) => item !== ' ').map(Number)
+    const separatorString = stringNumbers.replace(/ /g, ',')
 
-    const evenIntegers = []
-    const oddIntegers = []
+    const evenInteger = [] // 2, 4, 8, 10
+    const addInteger = [] // 7
 
-    for (let i = 0; i < arrayNumbers.length; i++) {
-        if (arrayNumbers[i] / 2 === 0) {
-            evenIntegers.push(arrayNumbers[i])
+    let number = ''
+
+    debugger
+
+    for (let i = 0; i < separatorString.length; i++) {
+        if (separatorString[i] % 2 === 0) {
+            evenInteger.push(separatorString[i])
+            number = separatorString[i]
         } else {
-            oddIntegers.push(arrayNumbers[i])
+            addInteger.push(separatorString[i])
+            number = separatorString[i]
         }
     }
 
-    console.log(evenIntegers, oddIntegers)
-    // return `${index}, ${value} `
+    const doubleArray = [...evenInteger, ...addInteger].sort()
+
+    return doubleArray.indexOf(number)
 }
 iqTest("2 4 7 8 10")
 
 
 /*
+
+indexOf(item => item % 2 === 0)
+
+cosnt evenInteger = [] // 2, 4, 8, 10
+const addInteger = [] // 7
+
+const number = ''
+
+for (let i = 0; i < separatorString.length; i++) {
+    if(separatorString[i] % 2 === 0) {
+        evenInteger.push(separatorString[i])
+        number = separatorString[i]
+    } else {
+        addInteger.push(separatorString[i])
+        number = separatorString[i]
+    }
+}
+
+const doubleArray = [...eventInteger, ...addInteger].sort()
+
+retrun doubleArray.indexOf(number)
+
+
+
+const separatorString = stringNumbers.replace(/ /g, ',').indexOf(item => item % 2 !== 0)
+
 
 const iqTest = (stringNumbers) => {
     const separatorString = stringNumbers.replace(/ /g, ',')
@@ -86,3 +132,39 @@ const iqTest = (stringNumbers) => {
 }
 iqTest("2 4 7 8 10")
 */
+
+// Задача: Понять что все скобки корректно расставлены
+
+function validateparenthesis(text) {
+    const textArray = [...text]
+
+    const filterLeft = textArray.filter(item => item === '(')
+    const filterRight = textArray.filter(item => item === ')')
+
+    if (textArray.length === 2) return false
+
+    if (filterLeft.length === filterRight.length) {
+        return true
+    } else {
+        return false
+    }
+}
+
+// validateparenthesis('(((())()))')
+// validateparenthesis('())')
+validateparenthesis(')(')
+
+
+// 
+
+
+
+function count(input) {
+    
+}
+
+//   test(count([]), 0)
+//   test(count([[1, 5], [5, 10]]), 1)
+//   test(count([[1, 5], [0, 1], [4, 5]]), 2)
+//   test(count([[1, 10], [5, 6], [2, 3], [7, 8]]), 2)
+count([[1, 2], [1, 10], [4, 9], [8, 15], [5, 6], [8, 16]])
