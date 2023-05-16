@@ -1,0 +1,14 @@
+@import '../../../assets/styles/variables';
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > buttom {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+}
