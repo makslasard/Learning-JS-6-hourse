@@ -150,6 +150,4 @@ const Cart: React.FC = () => {
 }
 
 export default Cart
-function selectCart(state: unknown): unknown {
-	throw new Error('Function not implemented.')
-}
+

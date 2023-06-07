@@ -1,11 +1,11 @@
+import Layout from './components/layout/Layout';
+
 const App = () => {
   return (
     <>
-      <div>
-        <header>
-          <h1>Главный заголовок!</h1>
-        </header>
-      </div>
+      <Layout>
+        <h1>Content</h1>
+      </Layout>
     </>
   );
 };

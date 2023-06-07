@@ -10,7 +10,9 @@
     "react-router-dom": "^6.4.2",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.2",
-    "rtk": "^2.2.0"
+    "rtk": "^2.2.0",
+    "sass": "^1.62.1",
+    "scss": "^0.2.4"
   },
   "devDependencies": {
     "@types/jest": "^29.2.0",

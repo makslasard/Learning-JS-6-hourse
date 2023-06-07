@@ -1,35 +1,8 @@
-/*
-Повторение теории алгоритмов для решения задач на leetcode:
+var isValid = function (s) {
+    const arr = [...s]
 
-1.
-
-
-
-
-*/
-
-const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-const binarySearch = (arr, item) => {
-    let start = 0
-    let end = arr.length
-    let middle
-    let found = false
-    let position = -1
-
-    while (found === false && start <= end) {
-        middle = Math.floor((start - end) / 2)
-
-        if (arr[middle] === item) {
-            found = true
-            position = middle
-            return position
-        }
-        if(item <= arr[middle]) {
-            end = middle - 1
-        } else {
-            start = middle + 1
-        }
+    for (let i = 0; i < arr.length; i++) {
+        if()
     }
-}
-binarySearch(array, 8)
+};
+isValid('()')

@@ -58,7 +58,7 @@
 
 
 */
-const arr = [0,3,2,5,6,8,1,9,4,2,1,2,9,6,4,1,7, -1, -5, 23, 6, 2,35,6,3,32] 
+const arr = [0, 3, 2, 5, 6, 8, 1, 9, 4, 2, 1, 2, 9, 6, 4, 1, 7, -1, -5, 23, 6, 2, 35, 6, 3, 32]
 let count = 0
 
 const quickSort = (array) => {
@@ -69,11 +69,11 @@ const quickSort = (array) => {
     let less = []
     let greater = []
 
-    for(let i = 0; i < array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         count += 1
-        if(i === pivotIndex) continue
+        if (i === pivotIndex) continue
 
-        if(array[i] < pivot) {
+        if (array[i] < pivot) {
             less.push(array[i])
         } else {
             greater.push(array[i])
@@ -87,3 +87,22 @@ const quickSort = (array) => {
 console.log(quickSort(arr))
 console.log(count)
 
+function quickSort(array) {
+    let pivotIndex = Math.floor(array.length / 2)
+    let pivot = array[pivotIndex]
+    let less = []
+    let greteas = []
+
+    for (let i = 0; i < array.length; i++) {
+        if (i === pivot) continue
+
+        if (pivot < array[i]) {
+            less.push(array[i])
+        } else {
+            greteas.push(array[i])
+        }
+
+    }
+
+    return [...quickSort(less), pivot, ...quickSort(greteas)];
+}

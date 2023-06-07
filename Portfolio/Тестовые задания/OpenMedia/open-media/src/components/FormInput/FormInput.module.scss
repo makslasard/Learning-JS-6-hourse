@@ -1,0 +1,23 @@
+.container {
+	display: flex;
+	align-items: center;
+	width: 620px;
+	input {
+		outline: none;
+		border: none;
+		width: 524px;
+		height: 96px;
+
+		&::placeholder {
+			font-size: 24px;
+			color: #a4a3a4;
+            padding-left: 16px;
+		}
+	}
+	button {
+		height: 96px;
+		width: 96px;
+		border: none;
+		background-color: #f8d231;
+	}
+}

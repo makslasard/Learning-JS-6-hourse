@@ -1,7 +1,10 @@
-const Layout = () => {
+import Header from './header/Header';
+
+const Layout = ({ children }) => {
   return (
     <div>
-      <h1>Layout</h1>
+      <Header />
+      {children}
     </div>
   );
 };
