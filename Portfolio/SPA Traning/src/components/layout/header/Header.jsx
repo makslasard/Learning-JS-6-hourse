@@ -1,11 +1,10 @@
-import { useAuth } from '../../../hooks/useAuth';
 import { FiArrowLeft } from 'react-icons/fi';
 
+import { useAuth } from '../../../hooks/useAuth';
 import Hamburger from '../hamburger/Hamburger';
-
 import styles from './Header.module.scss';
 
-const Header = () => {
+const Header = ({ bakcLink }) => {
   const { isAuth } = useAuth();
 
   return (

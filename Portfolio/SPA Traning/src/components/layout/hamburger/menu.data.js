@@ -1,4 +1,4 @@
-export const menu = [
+const menu = [
     {
         title: 'Workouts',
         link: '/workouts'
@@ -12,3 +12,4 @@ export const menu = [
         link: '/profile'
     },
 ]
+export default menu
