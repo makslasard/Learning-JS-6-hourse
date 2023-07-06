@@ -41,3 +41,9 @@
 
 
 */
+
+const getSomeData = (str, num) => {
+    
+}
+
+getSomeData('яблоко, слон, дуб, лес', 13)
