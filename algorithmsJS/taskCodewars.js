@@ -16,3 +16,4 @@ const randomColor = (min, max) => {
   return `rgb(${colorOne}, ${colorSecond}, ${colorThree})`
 }
 randomColor(0, 255)
+

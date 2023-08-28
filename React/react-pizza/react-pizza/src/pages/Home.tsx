@@ -87,7 +87,7 @@ const Home: React.FC = () => {
 				</div>
 			)}
 
-			<Pagination value={currentPage} onChangePage={onChangePage} />
+			{/* <Pagination value={currentPage} onChangePage={onChangePage} /> */}
 		</div>
 	)
 }

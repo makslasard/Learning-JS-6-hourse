@@ -17,7 +17,7 @@ const Cart: React.FC = () => {
 	)
 
 	const onClickClear = () => {
-		dispatch(clearItem())
+		dispatch(clearItem(0))
 	}
 
 	if (!totalPrice) {

@@ -106,3 +106,23 @@ function quickSort(array) {
 
     return [...quickSort(less), pivot, ...quickSort(greteas)];
 }
+
+const queue = (arr) => {
+    const queue = []
+
+    for (let i = 0; i < arr.length; i++) {
+        if (queue.length === 0) {
+            
+        }
+
+        if (arr[i] % 2 === 0) {
+            queue.push(arr[i])
+        } else {
+
+        }
+
+    }
+
+    return queue
+}
+queue([1, 2, 3, 4, 5, 6])
