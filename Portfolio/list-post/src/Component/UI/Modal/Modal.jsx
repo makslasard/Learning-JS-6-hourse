@@ -14,6 +14,7 @@ const Modal = ({ children, visible, setVisible }) => {
 			<div className={style.content} onClick={(e) => e.stopPropagation()}>
 				{children}
 			</div>
+			<div>1</div>
 		</div>
 	)
 }
