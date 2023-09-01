@@ -1,0 +1,14 @@
+.wrapper {
+	background-color: rgb(209, 209, 209);
+	height: 50px;
+	display: flex;
+	gap: 20px;
+	align-items: center;
+    justify-content: end;
+
+	.link {
+		text-decoration: none;
+		color: black;
+        margin-right: 20px;
+	}
+}

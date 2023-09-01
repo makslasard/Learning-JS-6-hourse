@@ -2,7 +2,6 @@ import React from 'react'
 
 import Input from '../UI/Input/Input'
 import Select from '../UI/Select/Select'
-
 import style from './PostFilte.module.scss'
 
 const PostFilter = ({ filter, setFilter }) => {

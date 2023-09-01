@@ -1,22 +1,28 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Button from '../../UI/Button/Button'
 
 import style from './Post.module.scss'
 
-const Post = (props) => {
-	const { deletePost } = props
+const Post = ({ deletePost, post }) => {
+	const navigate = useNavigate()
 
 	return (
 		<div className={style.wrapper}>
 			<div className={style.content}>
 				<h2>
-					{props.number}. {props.post.title}
+					{post.id}. {post.title}
 				</h2>
-				<p>{props.post.body}</p>
+				<p>{post.body}</p>
 			</div>
-			<div className={style.button}>
-				<Button onClick={() => deletePost(props.post)}>Удалить</Button>
+			<div className={style.wrapper_buttons}>
+				<div className={style.button}>
+					<Button onClick={() => navigate(`/posts/${post.id}`)}>Открыть</Button>
+				</div>
+				<div className={style.button}>
+					<Button onClick={() => deletePost(post)}>Удалить</Button>
+				</div>
 			</div>
 		</div>
 	)

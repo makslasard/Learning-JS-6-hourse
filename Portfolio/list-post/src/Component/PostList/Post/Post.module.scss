@@ -4,7 +4,16 @@
 	align-items: center;
 	padding: 15px;
 	width: 800px;
-	border: 2px solid teal;
+	border-radius: 10px;
+	border: 1px solid rgb(237, 237, 237);
 
 	margin-bottom: 15px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.15);
+}
+
+.wrapper_buttons {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-left: 10px;
 }

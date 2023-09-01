@@ -7,11 +7,15 @@ const Select = ({ defaultValue, options, value, onChange }) => {
 		<div className={style.wrapper}>
 			<select
 				style={{ marginTop: '20px', marginBottom: '20px' }}
-				value={defaultValue}
+				value={value}
 				onChange={(event) => onChange(event.target.value)}
+				className={style.select}
 			>
+				<option disabled defaultValue={defaultValue}>
+					{defaultValue}
+				</option>
 				{options.map((option) => (
-					<option key={option.value} value={option.value}>
+					<option key={option.value} value={option.value} className={style.option}>
 						{option.name}
 					</option>
 				))}
