@@ -1,9 +1,10 @@
 import React from 'react'
 
-import style from './App.scss'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import AppRouter from '../AppRouter/AppRouter'
+
+import style from './App.scss'
 
 function App() {
 	return (
