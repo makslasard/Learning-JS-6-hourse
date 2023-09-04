@@ -5,7 +5,7 @@ import { privateRoutes, publicRoutes } from '../../../routes/index'
 import { AuthContext } from '../../../context'
 
 const AppRouter = () => {
-	const [isAuth, setIsAuth] = useState(false)
+	const [isAuth, setIsAuth] = useState(true)
 
 	return (
 		<AuthContext.Provider value={{ isAuth, setIsAuth }}>

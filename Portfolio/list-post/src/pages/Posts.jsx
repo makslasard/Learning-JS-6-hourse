@@ -66,7 +66,7 @@ const Posts = () => {
 			</Modal>
 			<hr style={{ marginTop: '20px', marginBottom: '20px' }} />
 			<PostFilter filter={filter} setFilter={setFilter} />
-			<div>
+			<>
 				{postError && (
 					<div>
 						<h1>Произошла ошибка ${postError}</h1>
@@ -86,7 +86,7 @@ const Posts = () => {
 					changePage={changePage}
 					page={page}
 				/>
-			</div>
+			</>
 		</div>
 	)
 }
