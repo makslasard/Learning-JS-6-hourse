@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
+import { authSlice } from './slices/authSlice/authSlice'
 
 const store = configureStore({
-	reducer: {},
+	reducer: {
+		auth: authSlice.reducer,
+	},
 	middleware: [thunk],
 	devTools: true,
 })

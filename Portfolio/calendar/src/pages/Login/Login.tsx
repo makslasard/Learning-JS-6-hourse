@@ -1,12 +1,22 @@
 import React from 'react'
 
-import style from './Login.module.scss'
+import Layout from 'antd/es/layout/layout'
+import Row from 'antd/es/grid/row'
+
+import './Login.module.scss'
+import LoginForm from './LoginForm/LoginForm'
 
 const Login: React.FC = () => {
 	return (
-		<div className={style.wrapper}>
-			<h1>Login</h1>
-		</div>
+		<Layout>
+			<Row
+				justify="center"
+				align="middle"
+				style={{ height: 'calc(100vh - 64px)' }}
+			>
+				<LoginForm />
+			</Row>
+		</Layout>
 	)
 }
 

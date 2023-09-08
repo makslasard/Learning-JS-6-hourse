@@ -1,23 +1,20 @@
 import React from 'react'
+import { Layout } from 'antd'
 
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
 import AppRouter from '../AppRouter/AppRouter'
+import Navbar from '../../layouts/Navbar/Navbar'
 
 import style from './App.scss'
 
-function App() {
+const App: React.FC = () => {
 	return (
 		<div className={style.wrapper}>
-			<div>
-				<Header />
-			</div>
-			<div>
-				<AppRouter />
-			</div>
-			<div>
-				<Footer />
-			</div>
+			<Layout>
+				<Navbar />
+				<Layout.Content>
+					<AppRouter />
+				</Layout.Content>
+			</Layout>
 		</div>
 	)
 }

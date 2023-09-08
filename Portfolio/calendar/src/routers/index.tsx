@@ -1,7 +1,7 @@
 import Event from '../pages/Event/Event'
 import Login from '../pages/Login/Login'
 
-enum RoutersNames {
+export enum RoutersNames {
 	LOGIN = '/login',
 	EVENT = '/',
 }

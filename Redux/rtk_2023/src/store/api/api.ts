@@ -10,7 +10,7 @@ export const api = createApi({
 		baseUrl: API_URL,
 	}),
 	endpoints: (builder) => ({
-		getRecipes: builder.query<IRecipe[], null>({
+		getRecipes: builder.query<IRecipe | null>({
 			query: () => '/',
 			providesTags: () => [
 				{
