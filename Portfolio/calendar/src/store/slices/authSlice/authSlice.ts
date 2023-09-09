@@ -4,7 +4,7 @@ import { IAuthState } from '../../../types/auth/authState'
 
 const initialState: IAuthState = {
 	isAuth: false,
-	user: {} as IUsers,
+	users: {} as IUsers,
 	isLoading: false,
 	isError: '',
 }
@@ -13,19 +13,33 @@ export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		setAuth: (state, action: PayloadAction<boolean>) => {
-			state.isAuth = action.payload
+		setAuth: (state: IAuthState, action: PayloadAction<{ isAuth: boolean }>) => {
+			state.isAuth = action.payload.isAuth
 			state.isLoading = false
 		},
-		setUser: (state, action: PayloadAction<string>) => {
-			state.user.username = action.payload
-			state.user.password = action.payload
+		setUser: (
+			state: IAuthState,
+			action: PayloadAction<{ username: string; password: string }>
+		) => {
+			state.users.username = action.payload.username
+			state.users.password = action.payload.password
 		},
-		setIsError: (state, action: PayloadAction<string>) => {
-			state.isError = action.payload
+		setIsError: (state: IAuthState, action: PayloadAction<{ isError: string }>) => {
+			state.isError = action.payload.isError
 			state.isLoading = false
 		},
 	},
 })
 
-export const { actions, reducer } = authSlice
+export const { reducer: authReducer, actions: authActions } = authSlice
+
+/*
+Рекомендации: 
+	1. Писать actions в мутабельном стиле через immer
+	2. Делать типизацию PayloadAction более прозрачной: PayloadAction<{ username: string; password: string }
+		Чтобы понимать что конкретно мы типизируем
+	3. Переименовывать reducer и actions в slice так как могут повторяться actions и их может быть отчень 
+		много. В таком формате удобней и понятней
+		И вызывать наши action теперь в формате: dispatch(authActions.setAuth(true))
+
+*/

@@ -1,10 +1,8 @@
 import React from 'react'
 
-import style from './Event.module.scss'
-
 const Event: React.FC = () => {
 	return (
-		<div className={style.wrapper}>
+		<div>
 			<h1>Event</h1>
 		</div>
 	)

@@ -3,11 +3,12 @@ import { Layout, Menu } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { RoutersNames } from '../../routers'
 
-import { useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
+import { useTypedDispatch, useTypedSelector } from '../../store/helpers/hooks'
 
 const Navbar: React.FC = () => {
-	const isAuth = useSelector((state: RootState) => state.auth.isAuth)
+	const isAuth = useTypedSelector((state: RootState) => state.auth.isAuth)
+	const dispatch = useTypedDispatch()
 	const navigate = useNavigate()
 
 	return (
@@ -57,4 +58,3 @@ const Navbar: React.FC = () => {
 }
 
 export default Navbar
-
