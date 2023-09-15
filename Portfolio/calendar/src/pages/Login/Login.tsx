@@ -9,11 +9,7 @@ import LoginForm from './LoginForm/LoginForm'
 const Login: React.FC = () => {
 	return (
 		<Layout>
-			<Row
-				justify="center"
-				align="middle"
-				style={{ height: 'calc(100vh - 64px)' }}
-			>
+			<Row justify="center" align="middle" style={{ height: 'calc(100vh - 64px)' }}>
 				<LoginForm />
 			</Row>
 		</Layout>

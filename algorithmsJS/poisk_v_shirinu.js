@@ -93,22 +93,22 @@ graph.e = ['f']
 graph.f = ['g']
 
 const breadthSearch = (graph, start, end) => {
-    const queue = []
+    let queue = []
     queue.push(start)
 
-    while(queue.length < 0) {
+    while (queue.length > 0) {
         const current = queue.shift()
 
-        if(!graph[current]) {
+        if (!graph[current]) {
             graph[current] = []
         }
 
-        if(graph[current].includes(end)) {
+        if (graph[current].includes(end)) {
             return true
         } else {
             queue = [...queue, ...graph[current]]
         }
     }
+    return false
 }
-
-console.log(breadthSearch(graph, 'a', 'g'))
+console.log(breadthSearch(graph, 'a', 's'))

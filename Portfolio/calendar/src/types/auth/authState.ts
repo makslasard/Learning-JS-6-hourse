@@ -2,7 +2,7 @@ import { IUsers } from './users'
 
 export interface IAuthState {
 	isAuth: boolean
-	users: IUsers
+	users: IUsers[]
 	isLoading: boolean
-	isError: string
+	errorMessage: string
 }

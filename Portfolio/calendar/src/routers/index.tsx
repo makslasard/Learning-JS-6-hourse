@@ -1,3 +1,4 @@
+import React from 'react'
 import Event from '../pages/Event/Event'
 import Login from '../pages/Login/Login'
 
@@ -6,10 +7,6 @@ export enum RoutersNames {
 	EVENT = '/',
 }
 
-export const privateRoutes = [
-	{ path: RoutersNames.LOGIN, component: <Login /> },
-]
+export const privateRoutes = [{ path: RoutersNames.LOGIN, component: <Login /> }]
 
-export const publicRoutes = [
-	{ path: RoutersNames.EVENT, component: <Event /> }
-]
+export const publicRoutes = [{ path: RoutersNames.EVENT, component: <Event /> }]

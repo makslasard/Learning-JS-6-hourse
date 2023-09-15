@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [
+  "extends": [
     'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
@@ -24,13 +24,19 @@ module.exports = {
     },
     ecmaVersion: 2018,
     sourceType: 'module',
-    project: ['./tsconfig.json'],
+    project: ['./tsconfig.json',],
   },
   rules: {
     '@typescript-eslint/no-unused-vars': 'warn',
     'linebreak-style': 'off',
     'react/function-component-definition': 'off',
     'import/prefer-default-export': 'off',
+    'no-param-reassign': ['error', {
+      props: true,
+      ignorePropertyModificationsFor: [
+        'state',
+      ]
+    }],
     'prettier/prettier': [
       'error',
       {

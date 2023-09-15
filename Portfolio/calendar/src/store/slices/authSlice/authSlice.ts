@@ -1,32 +1,29 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { IUsers } from '../../../types/auth/users'
 import { IAuthState } from '../../../types/auth/authState'
+import { IUsers } from '../../../types/auth/users'
 
 const initialState: IAuthState = {
-	isAuth: false,
-	users: {} as IUsers,
+	isAuth: true,
+	users: [],
 	isLoading: false,
-	isError: '',
+	errorMessage: '',
 }
 
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		setAuth: (state: IAuthState, action: PayloadAction<{ isAuth: boolean }>) => {
+		setAuth: (state, action: PayloadAction<{ isAuth: boolean }>) => {
 			state.isAuth = action.payload.isAuth
-			state.isLoading = false
 		},
-		setUser: (
-			state: IAuthState,
-			action: PayloadAction<{ username: string; password: string }>
-		) => {
-			state.users.username = action.payload.username
-			state.users.password = action.payload.password
+		setUser: (state, action: PayloadAction<IUsers>) => {
+			state.users.push(action.payload)
 		},
-		setIsError: (state: IAuthState, action: PayloadAction<{ isError: string }>) => {
-			state.isError = action.payload.isError
-			state.isLoading = false
+		setIsError: (state, action: PayloadAction<{ errorMessage: string }>) => {
+			state.errorMessage = action.payload.errorMessage
+		},
+		setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
+			state.isLoading = action.payload.isLoading
 		},
 	},
 })

@@ -1,15 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { IUsers } from '../../../types/auth/users'
 import axios from 'axios'
+import { IUsers } from '../../../types/auth/users'
 
-export const authThunk = createAsyncThunk(
-	'authThunk/getUsers',
-	async (users: IUsers[], thunkApi) => {
-		try {
-			const response = await axios.get('/public/users.json')
-			console.log(response.data)
-		} catch (e) {
-			console.log(e)
-		}
+export const getDataUsers = createAsyncThunk('auth/getDataUsers', async (_, thunkApi) => {
+	try {
+		const response = await axios.get<IUsers>('/public/users.json')
+		return response.data
+	} catch (e) {
+		return thunkApi.rejectWithValue('Не удалось загрузить пользователя!')
 	}
-)
+})

@@ -40,7 +40,7 @@
 Если не найден мы вернем - 1
 
 */
-const arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 let count = 0
 
 function binarySearch(array, item) {
@@ -71,10 +71,10 @@ function binarySearch(array, item) {
 function recursiveBinarySearch(array, item, start, end) {
     let middle = Math.floor((start - end) / 2)
 
-    if(item === array[middle]) { // Если искомый элемент равен элементу который лежит в массиве по центральному индексу
+    if (item === array[middle]) { // Если искомый элемент равен элементу который лежит в массиве по центральному индексу
         return middle // Возвращаем позицию центрального элемента
     }
-    if(item < array[middle]) {
+    if (item < array[middle]) {
         return recursiveBinarySearch(array, item, start, middle - 1)
     } else {
         return recursiveBinarySearch(array, item, start, middle + 1)

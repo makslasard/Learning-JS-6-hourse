@@ -1,8 +1,11 @@
 import { Checkbox, Button, Form, Input } from 'antd'
 import React from 'react'
 import { rules } from '../../../utils/rules'
+import { useTypedDispatch } from '../../../store/helpers/hooks'
 
 const LoginForm: React.FC = () => {
+	const dispatch = useTypedDispatch()
+
 	const onFinish = (values: any) => {
 		console.log('Success:', values)
 	}
@@ -21,32 +24,25 @@ const LoginForm: React.FC = () => {
 				initialValues={{ remember: true }}
 				onFinish={onFinish}
 				onFinishFailed={onFinishFailed}
-				autoComplete="off"
-			>
+				autoComplete="off">
 				<Form.Item
 					label="Username"
 					name="username"
-					rules={[rules.required('Please input your username!')]}
-				>
+					rules={[rules.required('Please input your username!')]}>
 					<Input />
 				</Form.Item>
-
 				<Form.Item
 					label="Password"
 					name="password"
-					rules={[rules.required('Please input your passrord!')]}
-				>
+					rules={[rules.required('Please input your passrord!')]}>
 					<Input.Password />
 				</Form.Item>
-
 				<Form.Item
 					name="remember"
 					valuePropName="checked"
-					wrapperCol={{ offset: 8, span: 16 }}
-				>
+					wrapperCol={{ offset: 8, span: 16 }}>
 					<Checkbox>Remember me</Checkbox>
 				</Form.Item>
-
 				<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
 					<Button type="primary" htmlType="submit">
 						Submit
