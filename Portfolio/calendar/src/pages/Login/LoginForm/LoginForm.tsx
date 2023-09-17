@@ -1,11 +1,8 @@
 import { Checkbox, Button, Form, Input } from 'antd'
 import React from 'react'
 import { rules } from '../../../utils/rules'
-import { useTypedDispatch } from '../../../store/helpers/hooks'
 
 const LoginForm: React.FC = () => {
-	const dispatch = useTypedDispatch()
-
 	const onFinish = (values: any) => {
 		console.log('Success:', values)
 	}

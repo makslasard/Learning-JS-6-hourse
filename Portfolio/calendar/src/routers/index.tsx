@@ -7,6 +7,6 @@ export enum RoutersNames {
 	EVENT = '/',
 }
 
-export const privateRoutes = [{ path: RoutersNames.LOGIN, component: <Login /> }]
+export const privateRoutes = [{ path: RoutersNames.LOGIN, component: <Event /> }]
 
-export const publicRoutes = [{ path: RoutersNames.EVENT, component: <Event /> }]
+export const publicRoutes = [{ path: RoutersNames.EVENT, component: <Login /> }]

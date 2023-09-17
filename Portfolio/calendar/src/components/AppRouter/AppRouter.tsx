@@ -1,13 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux/es/hooks/useSelector'
 import { Route, Routes } from 'react-router-dom'
 import { publicRoutes, privateRoutes } from '../../routers'
-import { RootState } from '../../store/store'
+import { useAppSelector } from '../../hooks/redux'
 
 import style from './AppRouter.module.scss'
 
 const AppRouter: React.FC = () => {
-	const isAuth = useSelector((state: RootState) => state.auth.isAuth)
+	const isAuth = useAppSelector((state) => state.auth.isAuth)
 
 	return (
 		<div className={style.wrapper}>

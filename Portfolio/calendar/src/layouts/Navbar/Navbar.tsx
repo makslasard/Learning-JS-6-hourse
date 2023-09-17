@@ -1,15 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Layout, Menu } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { RoutersNames } from '../../routers'
 
-import { RootState } from '../../store/store'
-import { useTypedSelector } from '../../store/helpers/hooks'
-
 import style from './Navbar.module.scss'
 
 const Navbar: React.FC = () => {
-	const isAuth = useTypedSelector((state: RootState) => state.auth.isAuth)
+	const [isAuth, setIsAuth] = useState<boolean>(false)
 	const navigate = useNavigate()
 
 	return (
