@@ -1,6 +1,6 @@
 export interface IAuthDataUsers {
-	username: string | number
-	password: string | number
+	username: string
+	password: string
 }
 
 export interface IAuthState {

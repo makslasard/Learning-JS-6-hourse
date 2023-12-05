@@ -1,10 +1,15 @@
 import { Checkbox, Button, Form, Input } from 'antd'
 import React from 'react'
 import { rules } from '../../../utils/rules'
+import { useAppDispatch } from '../../../hooks/redux'
+import { authSlice } from '../../../store/reducers/authReducer/authSlice'
+import { IAuthDataUsers } from '../../../store/reducers/authReducer/auth.types'
 
 const LoginForm: React.FC = () => {
-	const onFinish = (values: any) => {
-		console.log('Success:', values)
+	const dispatch = useAppDispatch()
+
+	const onFinish = (values: IAuthDataUsers) => {
+		dispatch(authSlice.actions.login(values))
 	}
 
 	const onFinishFailed = (errorInfo: any) => {

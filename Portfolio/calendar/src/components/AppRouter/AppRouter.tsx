@@ -13,7 +13,7 @@ const AppRouter: React.FC = () => {
 			{isAuth ? (
 				<div>
 					<Routes>
-						{publicRoutes.map((router) => (
+						{privateRoutes.map((router) => (
 							<Route
 								path={router.path}
 								element={router.component}
@@ -25,7 +25,7 @@ const AppRouter: React.FC = () => {
 			) : (
 				<div>
 					<Routes>
-						{privateRoutes.map((router) => (
+						{publicRoutes.map((router) => (
 							<Route
 								path={router.path}
 								element={router.component}

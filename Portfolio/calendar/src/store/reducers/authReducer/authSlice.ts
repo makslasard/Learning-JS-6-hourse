@@ -3,8 +3,12 @@ import { IAuthDataUsers, IAuthState } from './auth.types'
 import { getAuthDateUsers } from './authThunk'
 
 const initialState: IAuthState = {
-	isAuth: false,
-	authDateUsers: [],
+	isAuth: true,
+	authDateUsers: [
+		{ username: 'user', password: '123' },
+		{ username: 'admin', password: '123' },
+		{ username: 'max', password: '123' },
+	],
 	isLoading: false,
 	errorMessage: '',
 }
@@ -12,7 +16,21 @@ const initialState: IAuthState = {
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
-	reducers: {},
+	reducers: {
+		login: (state, action: PayloadAction<IAuthDataUsers>) => {
+			const isUserInArray = state.authDateUsers.some(
+				(user) =>
+					user.username === action.payload.username &&
+					user.password === action.payload.password
+			)
+			if (isUserInArray) {
+				state.isAuth = true
+			}
+		},
+		logout: (state, action: PayloadAction<boolean>) => {
+			state.isAuth = action.payload
+		},
+	},
 	extraReducers: {
 		[getAuthDateUsers.fulfilled.type]: (state, action: PayloadAction<IAuthDataUsers[]>) => {
 			state.isLoading = false
